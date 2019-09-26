@@ -121,6 +121,19 @@ simulator starts.
 
 Once in the simulator, hit Ctrl-E and then type `quit` to exit.
 
+## PDP-10 with TOPS-20
+
+The old TOPS-20 operating system on the PDP-10 - before Unix even!  I
+know little about this system.  Launch with `vint pdp10-tops20` and
+follow the instructions.  You may find these links helpful:
+
+- [TOPS-20 (TWENEX)
+  notes](https://www.ldx.ca/notes/tops-20-notes.html)
+- [Running TOPS-20 V4.1 under
+  SIMH](http://gunkies.org/wiki/Running_TOPS-20_V4.1_under_SIMH)
+- [TOPS-20 User's Guide](https://www.bourguet.org/v2/pdp10/users/)
+
+
 ## Data General NOVA with RDOS 7.5
 
 This was a prime competitor to DEC.  It uses the RDOS [kit from
