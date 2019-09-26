@@ -6,7 +6,7 @@ import os
 
 c = pexpect.spawn('pdp10')
 c.logfile = sys.stdout.buffer
-c.delaybeforesend = 0.25
+c.delaybeforesend = 0.2
 c.setecho(False)
 os.linesep = "\r"
 

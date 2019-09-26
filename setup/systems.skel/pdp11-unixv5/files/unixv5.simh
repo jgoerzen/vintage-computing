@@ -1,0 +1,3 @@
+set cpu u18
+att rk0 unix_v5_rk.dsk
+boot rk

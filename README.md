@@ -61,9 +61,19 @@ Docker users may wish to make volumes out of /home/pi (to persist
 savegames and the like) or parts of `/opt/vint/systems` to make
 emulator images and such persistent.
 
-The setup scripts to generate all this are in `/opt/vint/setup`.
-These document the sources for the code and steps taken to install it
-all.
+Much documentation also exists in `/usr/share/doc`.
+
+Many of these packages are based on SIMH.  The [SIMH
+website](http://simh.trailing-edge.com/) and `/usr/share/doc/simh`
+contain a wealth of information.  The [sample software
+documentation](http://simh.trailing-edge.com/pdf/simh_swre.pdf), also
+available in `/usr/share/doc/simh`, describes loading and working with
+some of these systems.
+
+In Docker, the setup scripts to generate all this are in
+`/opt/vint/setup`.  (For Raspberry Pi and local installations, this
+repository has the same files.)  These document the sources for the
+code and steps taken to install it all.
 
 # Included Games
 
@@ -128,6 +138,15 @@ instance, `vint figlet xyzzy` displays:
                                 |___/         |___/ 
 ```
 
+## Banner
+
+There are two banner-type programs installed:
+
+ - `vint banner` will generate horizontal ASCII-art banners.  It comes
+   from the Debian package sysvbanner.
+ - `vint printerbanner` will generate vertical (rotated) ASCII-art
+   banners.  It comes from the Debian package bsdmainutils.
+
 ## Debian and BSD games (/usr/games) (more than 50)
 
 In addition to the games listed above, quite a few more (over 60!) are
@@ -182,6 +201,46 @@ instructions for doing so are displayed on your screen as the
 simulator starts.
 
 Once in the simulator, hit Ctrl-E and then type `quit` to exit.
+
+## PDP-11 with V5 Unix
+
+A PDP-11 with [Version 5
+Unix](https://en.wikipedia.org/wiki/Version_5_Unix) from 1974.  `vint
+pdp11-unixv5` will fire it up for you and display instructions for
+making it boot.
+
+## PDP-11 with V6 Unix
+
+A PDP-11 with [Version 6
+Unix](https://en.wikipedia.org/wiki/Version_6_Unix) from 1975.  `vint
+pdp11-unixv6` will fire it up for you and display instructions for
+making it boot.
+
+## PDP-11 with V7 Unix
+
+A PDP-11 with [Version 7
+Unix](https://en.wikipedia.org/wiki/Version_6_Unix) from 1979.  `vint
+pdp11-unixv7` will fire it up for you and display instructions for
+making it boot.  This version was the ancestor for many other Unixes
+that have come since.
+
+## Interdata 32b with V6 Unix
+
+The [Interdata
+32b](https://en.wikipedia.org/wiki/Interdata_7/32_and_8/32) running
+the first non-DEC port of Unix.  This one is [Version 6
+Unix](https://en.wikipedia.org/wiki/Version_6_Unix) from 1975.  `vint
+interdata-unixv6` will fire it up for you and display instructions for
+making it boot.
+
+## Interdata 32b with V7 Unix
+
+The [Interdata
+32b](https://en.wikipedia.org/wiki/Interdata_7/32_and_8/32) running
+the first non-DEC port of Unix.  This one is [Version 7
+Unix](https://en.wikipedia.org/wiki/Version_7_Unix) from 1975.  `vint
+interdata-unixv67 will fire it up for you and display instructions for
+making it boot.
 
 ## PDP-10 with TOPS-20
 

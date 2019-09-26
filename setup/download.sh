@@ -33,6 +33,12 @@ if [ ! -d wconrad.github.io ]; then
     cd ..
 fi
 dl http://simh.trailing-edge.com/kits/rdosswre.tar.Z
+dl http://simh.trailing-edge.com/kits/os8swre.tar.Z
+dl http://simh.trailing-edge.com/kits/uv5swre.zip
+dl http://simh.trailing-edge.com/kits/uv6swre.zip
+dl http://simh.trailing-edge.com/kits/uv7swre.zip
+dl http://simh.trailing-edge.com/kits/iu6swre.zip
+dl http://simh.trailing-edge.com/kits/iu7swre.zip
 dl http://pdp-10.trailing-edge.com/tapes/bb-d867e-bm_tops20_v41_2020_instl.tap.bz2
 dl http://panda.trailing-edge.com/panda-dist.tar.gz
 dl https://www.filfre.net/misc/TOPS-10.zip

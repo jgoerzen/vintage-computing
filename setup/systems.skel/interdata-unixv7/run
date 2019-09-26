@@ -1,0 +1,19 @@
+#!/bin/bash
+set -e
+
+cat <<EOF
+Starting UNIX V7 on Interdata 7/32
+
+  At the "Boot :" prompt, type "dsk(1,0)unix".  Then, at the "#" prompt, press
+  Ctrl-D to enter multiuser mode.  Login as root, password root.
+
+  For additional logins, "telnet localhost 4000".
+
+  Ctrl-E, quit to exit.
+
+EOF
+
+SCRIPTFULL="$(readlink -f "$0")"
+SCRIPTDIR="$(dirname "${SCRIPTFULL}")"
+cd "${SCRIPTDIR}/files"
+exec id32 unixv7.simh "$@"

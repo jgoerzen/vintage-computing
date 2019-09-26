@@ -1,0 +1,19 @@
+#!/bin/bash
+set -e
+
+cat <<EOF
+Starting UNIX V7 on PDP-11
+
+  Type "boot" at the "2" prompt, then at the ":" prompt, type
+  "rl(0,0)rl2unix"
+
+  For additional logins, "telnet localhost 4000".
+
+  Ctrl-E, quit to exit.
+
+EOF
+
+SCRIPTFULL="$(readlink -f "$0")"
+SCRIPTDIR="$(dirname "${SCRIPTFULL}")"
+cd "${SCRIPTDIR}/files"
+exec pdp11 unixv7.simh "$@"

@@ -1,0 +1,7 @@
+set ttp ena
+set pas dev=12
+set mt dev=85
+att -e dp0 iu7_dp0.dsk
+att -e dp1 iu7_dp1.dsk
+boot dp0
+

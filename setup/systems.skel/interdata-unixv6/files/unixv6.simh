@@ -1,0 +1,6 @@
+set ttp ena
+set pas dev=12
+set mt dev=85
+att -e dp0 iu6_dp0.dsk
+boot dp0
+

@@ -63,6 +63,41 @@ cd pdp11-2bsd
 tar -zxvf "${BASEDIR}/downloads/211bsd.tar.gz"
 mv 211bsd files
 
+### pdp11-unixv5
+
+cd "${BASEDIR}/systems"
+mkdir -p pdp11-unixv5
+cd pdp11-unixv5/files
+unzip "${BASEDIR}/downloads/uv5swre.zip"
+
+### pdp11-unixv6
+
+cd "${BASEDIR}/systems"
+mkdir -p pdp11-unixv6
+cd pdp11-unixv6/files
+unzip "${BASEDIR}/downloads/uv6swre.zip"
+
+### pdp11-unixv5
+
+cd "${BASEDIR}/systems"
+mkdir -p pdp11-unixv7
+cd pdp11-unixv7/files
+unzip "${BASEDIR}/downloads/uv7swre.zip"
+
+### interdata-unixv6
+
+cd "${BASEDIR}/systems"
+mkdir -p interdata-unixv6
+cd interdata-unixv6/files
+unzip "${BASEDIR}/downloads/iu6swre.zip"
+
+### interdata-unixv7
+
+cd "${BASEDIR}/systems"
+mkdir -p interdata-unixv7
+cd interdata-unixv7/files
+unzip "${BASEDIR}/downloads/iu7swre.zip"
+
 ### nova-rdos
 
 cd "${BASEDIR}/systems"
