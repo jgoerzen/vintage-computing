@@ -16,7 +16,7 @@ RUN /tmp/instpkgs.sh && rm /tmp/instpkgs.sh
 
 # Now do the setup
 COPY setup/ /opt/vint/setup
-RUN adduser --uid 2000 --disabled-password --gecos 'Runner' runner
+RUN adduser --uid 2000 --disabled-password --gecos 'Runner' pi
 RUN /opt/vint/setup/setup.sh
 RUN apt-get clean && rm -rf /tmp/setup /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     /usr/local/bin/docker-wipelogs && \

@@ -1,1 +1,2 @@
-/usr/games/bsdgames-adventure
+#!/bin/bash
+exec /usr/games/bsdgames-adventure "$@"

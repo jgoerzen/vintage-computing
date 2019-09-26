@@ -1,1 +1,5 @@
-files/zork
+#!/bin/bash
+set -e
+SCRIPTFULL="$(readlink -f "$0")"
+SCRIPTDIR="$(dirname "${SCRIPTFULL}")"
+exec "${SCRIPTDIR}/files/zork" "$@"

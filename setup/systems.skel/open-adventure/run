@@ -1,1 +1,2 @@
-/usr/games/advent
+#!/bin/bash
+exec /usr/games/advent "$@"

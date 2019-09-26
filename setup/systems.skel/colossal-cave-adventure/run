@@ -1,1 +1,3 @@
-/usr/games/colossal-cave-adventure
+#!/bin/bash
+exec /usr/games/colossal-cave-adventure "$@"
+

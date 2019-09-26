@@ -51,3 +51,11 @@ cd files
 make
 
 cp "${BASEDIR}/setup/vint" "/usr/local/bin"
+
+### pdp11-2bsd
+
+cd "${BASEDIR}/systems"
+mkdir -p pdp11-2bsd
+cd pdp11-2bsd
+tar -zxvf "${BASEDIR}/downloads/211bsd.tar.gz"
+mv 211bsd files

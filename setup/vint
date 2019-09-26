@@ -2,6 +2,11 @@
 
 set -e
 
+if [ "`id -u`" = "0" ]; then
+    cd ~pi
+    exec sudo -H -i -u pi "$0" "$@"
+fi
+
 BASEDIR="/opt/vint"
 
 if [ -z "$1" ]; then
@@ -14,4 +19,6 @@ if [ -z "$1" ]; then
     exit 5
 fi
 
-exec "${BASEDIR}/systems/$1/run" "$@"
+SYSTEM="$1"
+shift
+exec "${BASEDIR}/systems/${SYSTEM}/run" "$@"
