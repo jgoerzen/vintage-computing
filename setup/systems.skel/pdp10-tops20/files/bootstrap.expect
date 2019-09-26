@@ -102,7 +102,7 @@ send "TERMINAL (MODE IS) NO RAISE\r"
 expect "$"
 send "copy (FROM) tty: (TO) monnam.txt\r"
 expect ".1"
-send "Simoh TOPS-20 V4.1\r"
+send "Simh TOPS-20 V4.1\r"
 # Ctrl-Z
 send \032
 
