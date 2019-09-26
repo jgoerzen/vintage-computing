@@ -30,7 +30,7 @@ documentation and such as well.
 
 A buster-based distribution is required.
 
-Run:
+To install, run:
 
 ```
 git clone https://github.com/jgoerzen/vintage-computing
@@ -38,6 +38,9 @@ cd vintage-computing/setup
 sudo ./setup.sh
 sudo chown -R "`id -u`:`id -g`" /opt/vint
 ```
+
+To launch programs, just type `vint` with whatever parameters are
+needed (as shown below).
 
 # Documentation & Info
 
