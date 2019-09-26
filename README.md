@@ -48,9 +48,11 @@ The directory `/opt/vint/systems` will contain information for most
 systems included here, particularly inside the `files` directory.
 
 You may see files ending with a number; for instance, `foo.1` -- or
-maybe `foo.1.gz`.  In
-those cases, you can display the documentation with a command like
-`man -l foo.1` or `man -l foo.1.gz`.
+maybe `foo.1.gz`.  In those cases, you can display the documentation
+with a command like `man -l foo.1` or `man -l foo.1.gz`.
+
+Many programs also have system manpages; for instance, `man figlet`
+will show the system's documentation for figlet.
 
 Docker users may wish to make volumes out of /home/pi (to persist
 savegames and the like) or parts of `/opt/vint/systems` to make
@@ -110,19 +112,60 @@ included database, which is part of Debian.  Many users used to put
 this in their login scripts to automatically display a random little
 snippet when they'd log in.
 
-## Debian and BSD games (/usr/games)
+## Figlet
 
-In addition to the games listed above, quite a few more are also
-available in `/usr/games`.  These are installed via Debian packages,
-are all open source.  Most come from the `bsdgames` collection.  Some
-were written decades ago, though a few are more modern.  All can be
-played on a text terminal.
+The `vint figlet` command will render text in large blocks.  For
+instance, `vint figlet xyzzy` displays:
 
-To get a list of available games, type `vint usrgames list`.
+```
+                          __  ___   _ _________   _ 
+                          \ \/ / | | |_  /_  / | | |
+                           >  <| |_| |/ / / /| |_| |
+                          /_/\_\\__, /___/___|\__, |
+                                |___/         |___/ 
+```
+
+## Debian and BSD games (/usr/games) (more than 50)
+
+In addition to the games listed above, quite a few more (over 60!) are
+also available in `/usr/games`.  These are installed via Debian
+packages, are all open source.  Most come from the `bsdgames`
+collection.  Some were written decades ago, though a few are more
+modern.  All can be played on a text terminal.  A few of these can
+also be launched by other commands documented above.
+
+To get a list of available games, type `vint usrgames list`.  The list
+is large, so you may want to pipe it through a pager like `vint
+usrgames list | less`
 
 Here are some highlights for you:
 
+ - `tetris-bsd` and `petris` are Tetris implementations
+ - `moon-buggy` is an implementation of the well-known lunar lander
+   games
+ - `snake` is a growing snake game
+ - `sl` draws animated steam locomotives
+ - `cowsay` renders text as if quoted by a cow.  (See also figlet
+   above)
+   
+## Z-Machine (Z-Code) Interpreters
 
+Many text adventure games have been written to target the z-machine
+(zcode) environment.  They often end with extensions like `.z5` or
+similar.  You can get them from the [Interactive Fiction
+Archive](http://ifarchive.org/), which has a large [collection of
+zcode games](http://ifarchive.org/indexes/if-archive/games/zcode/).
+The [IFDB](http://ifdb.tads.org/) has references to even more.  Some
+of the most famous games were released as zcode (for instance, Zork
+I - III).
+
+You will need to download your own z-machine games, but once you have
+them, there are several interpreters available:
+
+ - frotz is the one I generally recommend.  Launch games with `vint
+   usrgames frotz gamename`
+ - jzip is also available.  Use `vint usrgames jzip gamename`
+ - fizmo is also available. Use `vint usrgames fizmo-console gamename`
 
 # Included Emulators
 
@@ -185,6 +228,12 @@ for your benefit.
 To exit, type `RELEASE DP0` and then `quit` at the `sim>` prompt.
 Ctrl-E will take you to the `sim>` prompt, which will let you perform
 an unclean shutdown.
+
+## SIMH in general
+
+The [SIMH](http://simh.trailing-edge.com/) emulator is included in
+full.  In fact, many of the other machines listed here are emulated
+using SIMH.  It can emulate dozens of types of old big iron machines.
 
 # Source
 

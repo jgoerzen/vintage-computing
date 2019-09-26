@@ -5,13 +5,18 @@ if [ -z "$1" ]; then
     exit 5
 fi
 
-if [ "$1" = "list" ]; then
+listgames () {
     for ITEM in `ls /usr/games`; do
         whatis "$ITEM"
     done
+}
+
+if [ "$1" = "list" ]; then
+    # We only want things in man section 6 (games)
+    listgames | grep 6
     exit 0
 fi
 
 GAME="$1"
 shift
-exec "/usr/games/$1" "$@"
+exec "/usr/games/${GAME}" "$@"
