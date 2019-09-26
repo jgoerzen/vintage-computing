@@ -39,6 +39,7 @@ tar -zxvf "${BASEDIR}/downloads/glkterm-104.tar.gz"
 cd glkterm
 make
 cd ../dungeon-gdt
+sed -i "s,^DATADIR.*,DATADIR=`pwd`," Makefile
 make
 
 #### main zork
@@ -48,6 +49,7 @@ mkdir -p zork-old
 cd zork-old
 cp -r "${BASEDIR}/downloads/devshane-zork" files
 cd files
+sed -i "s,^DATADIR.*,DATADIR=`pwd`," Makefile
 make
 
 cp "${BASEDIR}/setup/vint" "/usr/local/bin"
