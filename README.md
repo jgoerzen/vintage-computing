@@ -1,73 +1,61 @@
-# weewx for Docker
+# Vintage Computing for Docker, Raspberry Pi, and Debign
 
-This Docker image provides support for [WeeWX](http://www.weewx.com/).
-Weewx is a simple, easy to use weather station.  It provides
-a seamless upgrade from wview as well, so this is an easily-used
-replacement for it.
+This repository provides vintage emulators and games for Docker,
+Raspberry Pi, and Debian systems in general.  Included are such things
+as a PDP-11 emulation, Zork/Dungeon, Colossal Cave Adventure, and
+other legendary programs.
 
-WeeWX will require customization, so please consult the
-instructions before beginning.
+# Basic Use
 
-Some uses (such as with specialized hardware) may require
-Docker to run in privileged mode; such cases are beyond the scope
-of this manual.  However, serial devices can easily be used
-on the host and presented to the Docker container via ser2net.
-An increasing number of weather stations are network-enabled and
-can communicate directly to this system.
+A command `vint` is provided in `/usr/local/bin` to run the included
+programs.  None of them should be run as root, so if `vint` is run as
+root, it will instead run the programs as the user `pi` (which is
+created for you in Docker, or on Raspbian; on Debian, you're on your
+own.)
 
-You can view the [documentation for this image](https://github.com/jgoerzen/docker-weewx)
-on its Github page.  This image is based on my [debian-base-security](https://github.com/jgoerzen/docker-debian-base)
-image, which features automatic security updates to the operating system (though not WeeWX)
-enabled by default.
+# Use in Docker
 
-WeeWX is most typically used with a local sqlite database.  If you intend to
-use it with something else, you will probably need to install additional
-software in the container.
+You can run `docker run -ti jgoerzen/vintage-computing vint` (with
+whatever parameters you need) to just fire up something in your
+terminal.  The image is also based on my [Debian base
+images](https://github.com/jgoerzen/docker-debian-base), so you could
+also configure SSH or other access to the system if you so desire.
 
-I have provided rsync and ssh, however, since they are commonly used to push
-pages to remote servers.
+The Docker image intentionally leaves build files and downloads
+sitting around; these are important for posterity and the files that
+go into this system are somewhat rare.  They often contain
+documentation and such as well.
 
-You can download with:
+# Use in Raspbian (Raspberry Pi) or Debian
 
-    docker pull jgoerzen/weewx
+A buster-based distribution is required.
 
-And run with something like this:
+Run:
 
-    docker run -td \
-    --stop-signal=SIGRTMIN+3 \
-    --tmpfs /run:size=100M --tmpfs /run/lock:size=100M \
-    -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
-    --hostname=weewx \
-    -v /weatherdir:/var/lib/weewx:rw \
-    --name=weewx jgoerzen/weewx
+```
+git clone https://github.com/jgoerzen/vintage-computing
+cd vintage-computing/setup
+sudo ./setup.sh
+sudo chown -R "`id -u`:`id -g`" /opt/vint
+```
 
-You almost certainly want to mount something over `/var/lib/weewx` so your
-important data is preserved.  You will also want to have a way to preserve
-the configuration in `/etc/weewx`.  By default, the `HTML_ROOT` value in
-`/etc/weewx/weewx.conf` lists `/var/www/html/weewx`, so this would be an
-excellent volume to export to a webserver container (such as my
-[jgoerzen/debian-base-apache](https://github.com/jgoerzen/docker-debian-base)).
+# Documentation & Info
 
-Consult the [WeeWX documentation](http://www.weewx.com/docs.html) for setup steps.
+The directory `/vint/systems` will contain information for most
+systems included here, particularly inside the `files` directory.
 
-# Logging
-
-Logging can be done either to Docker or in the container; see `DEBBASE_SYSLOG` as
-documented in the [docker-debian-base docs](https://github.com/jgoerzen/docker-debian-base).
+You may see files ending with a number; for instance, `foo.1`.  In
+those cases, you can display the documentation with a command like
+`man -l foo.1`.
 
 # Source
 
 This is prepared by John Goerzen <jgoerzen@complete.org> and the source
-can be found at https://github.com/jgoerzen/docker-weewx
-
-# Security Status
-
-The Debian operating system is configured to automatically apply security patches.
-WeeWX, however, does not have such a feature.
+can be found at https://github.com/jgoerzen/vintage-computing
 
 # Copyright
 
-Docker scripts, etc. are Copyright (c) 2017 John Goerzen.  
+Docker scripts, etc. are Copyright (c) 2019 John Goerzen.  
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
