@@ -74,6 +74,7 @@ cd files
 tar -xvf "${BASEDIR}/downloads/rdosswre.tar.Z"
 
 ### pdp10-tops20
+# From http://gunkies.org/wiki/Running_TOPS-20_V4.1_under_SIMH
 cd "${BASEDIR}/systems"
 mkdir -p pdp10-tops20/files
 cd pdp10-tops20/files
