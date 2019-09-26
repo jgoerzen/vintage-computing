@@ -21,6 +21,9 @@ terminal.  The image is also based on my [Debian base
 images](https://github.com/jgoerzen/docker-debian-base), so you could
 also configure SSH or other access to the system if you so desire.
 
+Within the Docker image, at any shell prompt, just run `vint` as in
+the examples below.
+
 The Docker image intentionally leaves build files and downloads
 sitting around; these are important for posterity and the files that
 go into this system are somewhat rare.  They often contain
@@ -190,7 +193,8 @@ a more complete one at `vint pdp10-tops20-panda` running the [panda
 dist](https://www.ldx.ca/notes/tops-20-notes.html).  The latter even
 has EMACS and TECO installed; see the link for details.
 
-The basic image uses SIMH; the panda one uses klt20.
+The basic image uses SIMH; the panda one uses klt20.  Note: klt20 is
+only provided in an ia32 executable, and will not run on Raspberry Pi.
 
 You may find these links helpful:
 
@@ -234,6 +238,14 @@ an unclean shutdown.
 The [SIMH](http://simh.trailing-edge.com/) emulator is included in
 full.  In fact, many of the other machines listed here are emulated
 using SIMH.  It can emulate dozens of types of old big iron machines.
+
+# Updates (Local Installations)
+
+You can simply `rm -r /opt/vint/systems` and re-run the setup script.
+
+# Removal (Local Installations)
+
+`rm -r /opt/vint /usr/local/bin/vint`
 
 # Source
 

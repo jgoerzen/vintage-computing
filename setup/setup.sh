@@ -53,7 +53,7 @@ cd files
 sed -i "s,^DATADIR.*,DATADIR=`pwd`," Makefile
 make
 
-cp "${BASEDIR}/setup/vint" "/usr/local/bin"
+cp "${SETUPDIR}/vint" "/usr/local/bin"
 
 ### pdp11-2bsd
 
