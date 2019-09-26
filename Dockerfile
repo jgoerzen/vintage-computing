@@ -7,8 +7,8 @@ RUN mv /usr/sbin/policy-rc.d.disabled /usr/sbin/policy-rc.d && \
 
 # pre-seed the cache a bit
 COPY setup/download.sh /tmp/download.sh
-RUN mkdir -p /opt/vint/download && \
-    cd /opt/vint/download && \
+RUN mkdir -p /opt/vint/downloads && \
+    cd /opt/vint/downloads && \
     /tmp/download.sh && \
     rm /tmp/download.sh
 
@@ -18,7 +18,6 @@ RUN adduser --uid 2000 --disabled-password --gecos 'Runner' runner
 RUN /opt/vint/setup/setup.sh
 RUN apt-get clean && rm -rf /tmp/setup /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     /usr/local/bin/docker-wipelogs && \
-    mv /usr/sbin/policy-rc.d /usr/sbin/policy-rc.d.disabled && \
-    rm -r /tmp/setup
+    mv /usr/sbin/policy-rc.d /usr/sbin/policy-rc.d.disabled
 
 CMD ["/usr/local/bin/boot-debian-base"]
