@@ -11,19 +11,15 @@ BASEDIR="/opt/vint"
 mkdir -p "${BASEDIR}"
 cd "${BASEDIR}"
 
-apt-get -y -u install git gcc make wget libncurses-dev sharutils zip unzip telnet bc bison flex libssl-dev \
-        simh \
-        colossal-cave-adventure open-adventure bsdgames \
-        fortunes fortune-mod fortunes-bofh-excuses
-
 mkdir -p downloads
 cd downloads
 
+"${SETUPDIR}/instpkgs.sh"
 "${SETUPDIR}/download.sh"
 sha256sum -c < "${SETUPDIR}/sums"
 
 cd "${BASEDIR}"
-mkdir -p systems
+cp -r "${SETUPDIR}/systems.skel" systems
 
 #### zork-glk
 
@@ -53,3 +49,5 @@ cd zork-old
 cp -r "${BASEDIR}/downloads/devshane-zork" files
 cd files
 make
+
+cp "${BASEDIR}/setup/vint" "/usr/local/bin"

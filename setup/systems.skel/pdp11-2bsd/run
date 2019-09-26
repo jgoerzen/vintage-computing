@@ -1,0 +1,19 @@
+#!/bin/bash
+
+cat <<EOF
+Starting BSD 2.11 on PDP-11
+
+  When the boot loader offers you a ":" prompt, press return.  It will
+  boot into single user mode.  Press ^D.
+
+  Once it finishes booting into multiuser mode, you can log in on the 
+  console as root with a password of Hithere.
+
+  For additional logins, "telnet localhost 4000".
+
+EOF
+
+SCRIPTFULL="$(readlink -f "$0")"
+SCRIPTDIR="$(dirname "${SCRIPTFULL}")"
+cd "${SCRIPTDIR}/files"
+exec pdp11 211bsd.simh "$@"

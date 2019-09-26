@@ -11,6 +11,8 @@ RUN mkdir -p /opt/vint/downloads && \
     cd /opt/vint/downloads && \
     /tmp/download.sh && \
     rm /tmp/download.sh
+COPY setup/instpkgs.sh /tmp/instpkgs.sh
+RUN /tmp/instpkgs.sh && rm /tmp/instpkgs.sh
 
 # Now do the setup
 COPY setup/ /opt/vint/setup

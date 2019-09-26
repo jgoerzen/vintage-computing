@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -e
+
+BASEDIR="/opt/vint"
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 program [...]"
+    echo ""
+    echo "Valid programs are:"
+    echo ""
+    cd "${BASEDIR}/systems"
+    ls
+    exit 5
+fi
+
+exec "${BASEDIR}/systems/$1/run" "$@"
