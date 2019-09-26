@@ -68,7 +68,7 @@ This is the text adventure that started it all: [Colossal Cave
 Adventure](https://en.wikipedia.org/wiki/Colossal_Cave_Adventure) by
 Crowther & Woods, also known as adventure and advent.
 
-I have provided three versions for you:
+I have provided five versions for you:
 
  - `vint colossal-cave-adventure` is the one I recommend.  It is a faithful
    port of the canonical 350-point version, usies the original text
@@ -78,6 +78,8 @@ I have provided three versions for you:
    Debian in bsdgames), which was an early port to C by Jim Gillogly.
  - `vint open-adventure` is a port of the last version that Crowther & Woods
    themselves released.
+ - Two versions are also included in the PDP-10 TOPS-10 installation;
+   see rhe linked readme in that section for details.
 
 ## Zork (aka Dungeon)
 
@@ -107,6 +109,20 @@ The `vint fortune` command will display a random fortune from the
 included database, which is part of Debian.  Many users used to put
 this in their login scripts to automatically display a random little
 snippet when they'd log in.
+
+## Debian and BSD games (/usr/games)
+
+In addition to the games listed above, quite a few more are also
+available in `/usr/games`.  These are installed via Debian packages,
+are all open source.  Most come from the `bsdgames` collection.  Some
+were written decades ago, though a few are more modern.  All can be
+played on a text terminal.
+
+To get a list of available games, type `vint usrgames list`.
+
+Here are some highlights for you:
+
+
 
 # Included Emulators
 

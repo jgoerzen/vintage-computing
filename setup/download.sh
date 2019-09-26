@@ -5,7 +5,7 @@ set -x
 
 dl () {
     if [ ! -f "`basename "$1"`" ]; then
-        wget "$1"
+        wget --no-verbose "$1"
     fi
 }
 
@@ -37,4 +37,5 @@ dl http://pdp-10.trailing-edge.com/tapes/bb-d867e-bm_tops20_v41_2020_instl.tap.b
 dl http://panda.trailing-edge.com/panda-dist.tar.gz
 dl https://www.filfre.net/misc/TOPS-10.zip
 
-find . -name .git -prune -o \( -type f -print0 \) | sort -z | xargs -0 sha256sum > newsums
+cd ..
+find . -name .git -prune -o \( -type f -print0 \) | sort -z | xargs -0 sha256sum | grep -v newsums > newsums

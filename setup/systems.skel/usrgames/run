@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 list | $0 game ..."
+    exit 5
+fi
+
+if [ "$1" = "list" ]; then
+    for ITEM in `ls /usr/games`; do
+        whatis "$ITEM"
+    done
+    exit 0
+fi
+
+GAME="$1"
+shift
+exec "/usr/games/$1" "$@"
