@@ -1,0 +1,96 @@
+#!/usr/bin/expect -f
+
+expect 'MTBOOT>'
+send "/L\r"
+expect "MTBOOT>"
+send "/G143\r"
+expect "ON THE PUBLIC STRUCTURE? "
+send "y\r"
+expect "DEFINE THE PUBLIC STRUCTURE? "
+send "y\r"
+expect "IN THIS STRUCTURE: "
+send "1\r"
+expect "LOGICAL PACK # 0 MOUNTED: "
+send "0,0\r"
+expect "DEFAULT SWAPPING SPACE? "
+send "y\r"
+expect "FRONT END FILE SYSTEM? "
+send "y\r"
+expect "BOOTSTRAP AREA? "
+send "y\r"
+expect "PROTOTYPE BAT BLOCKS? "
+send "y\r"
+expect "DATE AND TIME: "
+send "19-MAY-2001 11:13\r"
+expect "(Y,N) "
+send "y\r"
+expect "RELOAD? "
+send "INSTALLATION\r"
+
+expect "NO SYSJOB"
+sleep 1
+
+# Ctrl-C
+send \003
+
+expect "MX>"
+send "G"
+expect "ET FILE "
+send "MTA0:\r"
+
+expect "MX>"
+send "G"
+expect "ET FILE "
+send "MTA0:\r"
+
+expect "MX>"
+send "START\r"
+
+expect "$"
+send "RUN (PROGRAM) MTA0:\r"
+expect "DLUSER>"
+send "LOAD (FROM FILE) MTA0:\r"
+expect "DLUSER>"
+send "EXIT\r"
+expect "$"
+
+send "RUN (PROGRAM) MTA0:\r"
+
+expect "DUMPER>"
+send "TAPE (DEVICE) MTA0:\r"
+expect "DUMPER>"
+send "RESTORE (TAPE FILES) PS:<*>*.*.* (TO) PS:<SYSTEM>*.*.*\r"
+expect "DUMPER>"
+send "RESTORE (TAPE FILES) PS:<*>*.*.* (TO) PS:<SUBSYS>*.*.*\r"
+expect "DUMPER>"
+send "RESTORE (TAPE FILES) PS:<*>*.*.* (TO) PS:<UETP.LIB>*.*.*\r"
+expect "DUMPER>"
+send "EXIT\r"
+
+expect "$"
+send "UNLOAD (DEVICE) MTA0:\r"
+expect "$"
+send "INFORMATION (ABOUT) DISK-USAGE (OF DIRECTORY) PS:<*>\r"
+expect "Pages free on PS:"
+expect "$"
+
+send "CONNECT (TO DIRECTORY) PS:<SYSTEM>\r"
+expect "$"
+send "COPY (FROM) 2020-MONMED.EXE.1 (TO) MONITR.EXE\r"
+expect "$"
+
+send "TERMINAL (MODE IS) NO RAISE\r"
+expect "$"
+send "copy (FROM) tty: (TO) monnam.txt\r"
+expect ".1"
+send "Simoh TOPS-20 V4.1\r"
+# Ctrl-Z
+send \032
+
+expect "$"
+send "copy (FROM) tty: (TO) TAPNAM.TXT\r"
+expect ".1"
+send "SIMH-V41\r"
+send \032
+
+expect "$"
