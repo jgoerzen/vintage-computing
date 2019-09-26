@@ -1,6 +1,21 @@
 #!/usr/bin/expect -f
 
-expect 'MTBOOT>'
+spawn "pdp10"
+expect "sim> "
+send "set cpu tops-20\r"
+expect "sim> "
+send "d wru 006\r"
+expect "sim> "
+send "att tu i.tap\r"
+expect "sim> "
+send "set rp rp06\r"
+expect "sim> "
+send "att rp t20.dsk\r"
+expect "sim> "
+send "boot tu\r"
+
+
+expect "MTBOOT>"
 send "/L\r"
 expect "MTBOOT>"
 send "/G143\r"
@@ -44,8 +59,12 @@ expect "ET FILE "
 send "MTA0:\r"
 
 expect "MX>"
-send "START\r"
+send "S"
+expect "TART"
+send "\r"
 
+expect "@"
+send "ENABLE (CAPABILITIES)\r"
 expect "$"
 send "RUN (PROGRAM) MTA0:\r"
 expect "DLUSER>"
