@@ -11,7 +11,7 @@ BASEDIR="/opt/vint"
 mkdir -p "${BASEDIR}"
 cd "${BASEDIR}"
 
-apt-get -y -u install git build-essential gcc make wget libncurses-dev sharutils telnet bc bison flex libssl-dev \
+apt-get -y -u install git build-essential gcc make wget libncurses-dev sharutils zip unzip telnet bc bison flex libssl-dev \
         simh \
         colossal-cave-adventure open-adventure bsdgames \
         fortunes fortune-mod fortunes-bofh-excuses
