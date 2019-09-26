@@ -17,4 +17,4 @@ EOF
 SCRIPTFULL="$(readlink -f "$0")"
 SCRIPTDIR="$(dirname "${SCRIPTFULL}")"
 cd "${SCRIPTDIR}/files"
-exec pdp10 tops20.simh "$@"
+exec ./klt20 "$@"

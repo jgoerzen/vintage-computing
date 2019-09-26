@@ -73,6 +73,22 @@ mkdir -p files
 cd files
 tar -xvf "${BASEDIR}/downloads/rdosswre.tar.Z"
 
+### pdp10-tops10
+cd "${BASEDIR}/systems"
+mkdir -p pdp10-tops10/files
+cd pdp10-tops10/files
+unzip "${BASEDIR}/downloads/TOPS-10.zip"
+
+### pdp10-tops20-panda
+# http://panda.trailing-edge.com/
+# https://www.ldx.ca/notes/tops-20-notes.html
+cd "${BASEDIR}/systems"
+mkdir -p pdp10-tops20-panda
+cd pdp10-tops20-panda
+tar -zxvf "${BASEDIR}/downloads/panda-dist.tar.gz"
+mv -vi panda-dist files
+
+
 ### pdp10-tops20
 # From http://gunkies.org/wiki/Running_TOPS-20_V4.1_under_SIMH
 cd "${BASEDIR}/systems"

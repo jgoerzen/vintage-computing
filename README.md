@@ -124,8 +124,16 @@ Once in the simulator, hit Ctrl-E and then type `quit` to exit.
 ## PDP-10 with TOPS-20
 
 The old TOPS-20 operating system on the PDP-10 - before Unix even!  I
-know little about this system.  Launch with `vint pdp10-tops20` and
-follow the instructions.  You may find these links helpful:
+know little about this system.  
+
+Two systems are provided: a very basic one at `vint pdp10-tops20`, and
+a more complete one at `vint pdp10-tops20-panda` running the [panda
+dist](https://www.ldx.ca/notes/tops-20-notes.html).  The latter even
+has EMACS and TECO installed; see the link for details.
+
+The basic image uses SIMH; the panda one uses klt20.
+
+You may find these links helpful:
 
 - [TOPS-20 (TWENEX)
   notes](https://www.ldx.ca/notes/tops-20-notes.html)
@@ -133,6 +141,14 @@ follow the instructions.  You may find these links helpful:
   SIMH](http://gunkies.org/wiki/Running_TOPS-20_V4.1_under_SIMH)
 - [TOPS-20 User's Guide](https://www.bourguet.org/v2/pdp10/users/)
 
+## PDP-10 with TOPS-10
+
+An even older operating system, running TOPS-10.  This is built with
+the [TOPS-10 in a
+box](https://www.filfre.net/2011/05/tops-10-in-a-box/) distribution.
+The [README file](https://www.filfre.net/misc/TOPS-10.txt) is included
+with the system, or may be accessed here, describes how to boot and
+use this image.  Use `vint pdp10-tops10`.
 
 ## Data General NOVA with RDOS 7.5
 

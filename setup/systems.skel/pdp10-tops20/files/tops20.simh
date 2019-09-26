@@ -1,8 +1,9 @@
 ; See http://gunkies.org/wiki/Running_TOPS-20_V4.1_under_SIMH
 
+set cpu tops-20
 d wru 006 
 att tu i.tap
 set rp rp06
 att rp t20.dsk
-boot tu
+boot rp
 

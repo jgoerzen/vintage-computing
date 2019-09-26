@@ -34,5 +34,7 @@ if [ ! -d wconrad.github.io ]; then
 fi
 dl http://simh.trailing-edge.com/kits/rdosswre.tar.Z
 dl http://pdp-10.trailing-edge.com/tapes/bb-d867e-bm_tops20_v41_2020_instl.tap.bz2
+dl http://panda.trailing-edge.com/panda-dist.tar.gz
+dl https://www.filfre.net/misc/TOPS-10.zip
 
 find . -name .git -prune -o \( -type f -print0 \) | sort -z | xargs -0 sha256sum > newsums
