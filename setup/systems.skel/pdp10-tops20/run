@@ -1,0 +1,16 @@
+#!/bin/bash
+set -e
+
+cat <<EOF
+Starting TOPS-20 on PDP-10
+
+  For additional logins, "telnet localhost 4000".
+
+  Ctrl-F, quit to exit.
+
+EOF
+
+SCRIPTFULL="$(readlink -f "$0")"
+SCRIPTDIR="$(dirname "${SCRIPTFULL}")"
+cd "${SCRIPTDIR}/files"
+exec pdp10 tops20.simh "$@"

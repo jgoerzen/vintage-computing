@@ -119,6 +119,28 @@ boot, but needs a bit of help to get to a login prompt.  The
 instructions for doing so are displayed on your screen as the
 simulator starts.
 
+Once in the simulator, hit Ctrl-E and then type `quit` to exit.
+
+## Data General NOVA with RDOS 7.5
+
+This was a prime competitor to DEC.  It uses the RDOS [kit from
+SIMH](http://simh.trailing-edge.com/software.html), which has been
+installed for you using [wconrad's
+instructions](https://wconrad.github.io/20151207/simh-nova-hello-world.html),
+a copy of which is included in the generated image.  Those
+instructions will be helpful to you.
+
+`vint nova-rdos` will launch the simulator.  It requires keyboard
+input to fully load; instructions are displayed before the simulator
+starts.  The [RDOS
+manual](bitsavers.trailing-edge.com/pdf/dg/software/rdos/093-000109-01_RDOS_Command_Line_Interpreter.pdf)
+may be useful for you; it is also included in `/opt/vint/nova-rdos`
+for your benefit.
+
+To exit, type `RELEASE DP0` and then `quit` at the `sim>` prompt.
+Ctrl-E will take you to the `sim>` prompt, which will let you perform
+an unclean shutdown.
+
 # Source
 
 This is prepared by John Goerzen <jgoerzen@complete.org> and the source

@@ -12,6 +12,8 @@ Starting BSD 2.11 on PDP-11
 
   For additional logins, "telnet localhost 4000".
 
+  Ctrl-E, quit to exit.
+
 EOF
 
 SCRIPTFULL="$(readlink -f "$0")"

@@ -1,0 +1,5 @@
+; Written by jgoerzen based on info at https://wconrad.github.io/20151207/simh-nova-hello-world.html
+
+att dkp0 Disks/rdos_d31.dsk
+set tti dasher
+boot dkp0

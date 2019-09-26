@@ -61,3 +61,21 @@ mkdir -p pdp11-2bsd
 cd pdp11-2bsd
 tar -zxvf "${BASEDIR}/downloads/211bsd.tar.gz"
 mv 211bsd files
+
+### nova-rdos
+
+cd "${BASEDIR}/systems"
+mkdir -p nova-rdos
+cd nova-rdos
+ln ../../downloads/093-000109-01_RDOS_Command_Line_Interpreter.pdf
+ln ../../downloads/wconrad.github.io/_posts/2015-12-07-simh-nova-hello-world.markdown
+mkdir -p files
+cd files
+tar -xvf "${BASEDIR}/downloads/rdosswre.tar.Z"
+
+### pdp10-tops20
+cd "${BASEDIR}/systems"
+mkdir -p pdp10-tops20/files
+cd pdp10-tops20/files
+bzcat "${BASEDIR}/downloads/bb-d867e-bm_tops20_v41_2020_instl.tap.bz2" > i.tap
+script -c ./bootstrap.expect bootstrap.log

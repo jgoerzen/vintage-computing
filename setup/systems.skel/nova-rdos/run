@@ -1,0 +1,21 @@
+#!/bin/bash
+set -e
+
+cat <<EOF
+Starting RDOS 7.5 on NOVA
+
+  When prompted for a filename, just his Enter.
+  Enter a date and time.
+
+  The "R" is your RDOR prompt.
+
+  For additional logins, "telnet localhost 4000".
+
+  Ctrl-E, quit to exit.
+
+EOF
+
+SCRIPTFULL="$(readlink -f "$0")"
+SCRIPTDIR="$(dirname "${SCRIPTFULL}")"
+cd "${SCRIPTDIR}/files"
+exec dgnova rdos.simh "$@"

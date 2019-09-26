@@ -23,4 +23,16 @@ if [ ! -d devshane-zork ]; then
     cd ..
 fi
 
+# Data General
+
+dl http://bitsavers.trailing-edge.com/pdf/dg/software/rdos/093-000109-01_RDOS_Command_Line_Interpreter.pdf
+if [ ! -d wconrad.github.io ]; then
+    git clone -n https://github.com/wconrad/wconrad.github.io.git
+    cd wconrad.github.io
+    git checkout 92d7797323b7347b073e9b6917f46458373a44b5
+    cd ..
+fi
+dl http://simh.trailing-edge.com/kits/rdosswre.tar.Z
+dl http://pdp-10.trailing-edge.com/tapes/bb-d867e-bm_tops20_v41_2020_instl.tap.bz2
+
 find . -name .git -prune -o \( -type f -print0 \) | sort -z | xargs -0 sha256sum > newsums
