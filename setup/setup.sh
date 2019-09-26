@@ -2,6 +2,7 @@
 
 set -e
 set -x
+set -o pipefail
 
 SCRIPTFULL="$(readlink -f "$0")"
 SETUPDIR="$(dirname "${SCRIPTFULL}")"
@@ -95,4 +96,4 @@ cd "${BASEDIR}/systems"
 mkdir -p pdp10-tops20/files
 cd pdp10-tops20/files
 bzcat "${BASEDIR}/downloads/bb-d867e-bm_tops20_v41_2020_instl.tap.bz2" > i.tap
-script -c ./bootstrap.expect bootstrap.log
+./bootstrap.expect | tee bootstrap.log

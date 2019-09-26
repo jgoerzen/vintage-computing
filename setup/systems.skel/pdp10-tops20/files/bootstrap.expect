@@ -1,213 +1,219 @@
-#!/usr/bin/expect -f
+#!/usr/bin/python3
+import pexpect
+import sys
+import time
 
-spawn "pdp10"
-expect "sim> "
-send "set cpu tops-20\r"
-expect "sim> "
-send "d wru 006\r"
-expect "sim> "
-send "att tu i.tap\r"
-expect "sim> "
-send "set rp rp06\r"
-expect "sim> "
-send "att rp t20.dsk\r"
-expect "sim> "
-send "boot tu\r"
+c = pexpect.spawn('pdp10')
+c.logfile = sys.stdout.buffer
+c.delaybeforesend = 1
+
+c.expect("sim> ")
+c.sendline("set cpu tops-20")
+c.expect("sim> ")
+c.sendline("d wru 006")
+c.expect("sim> ")
+c.sendline("att tu i.tap")
+c.expect("sim> ")
+c.sendline("set rp rp06")
+c.expect("sim> ")
+c.sendline("att rp t20.dsk")
+c.expect("sim> ")
+c.sendline("boot tu")
 
 
-expect "MTBOOT>"
-send "/L\r"
-expect "MTBOOT>"
-send "/G143\r"
-expect "ON THE PUBLIC STRUCTURE? "
-send "y\r"
-expect "DEFINE THE PUBLIC STRUCTURE? "
-send "y\r"
-expect "IN THIS STRUCTURE: "
-send "1\r"
-expect "LOGICAL PACK # 0 MOUNTED: "
-send "0,0\r"
-expect "DEFAULT SWAPPING SPACE? "
-send "y\r"
-expect "FRONT END FILE SYSTEM? "
-send "y\r"
-expect "BOOTSTRAP AREA? "
-send "y\r"
-expect "PROTOTYPE BAT BLOCKS? "
-send "y\r"
-expect "DATE AND TIME: "
-send "19-MAY-2001 11:13\r"
-expect "(Y,N) "
-send "y\r"
-expect "RELOAD? "
-send "INSTALLATION\r"
+c.expect("MTBOOT>")
+c.send("/L\r")
+c.expect("MTBOOT>")
+c.sendline("/G143")
+c.expect("ON THE PUBLIC STRUCTURE? ")
+c.sendline("y")
+c.expect("DEFINE THE PUBLIC STRUCTURE? ")
+c.sendline("y")
+c.expect("IN THIS STRUCTURE: ")
+c.sendline("1")
+c.expect("LOGICAL PACK # 0 MOUNTED: ")
+c.sendline("0,0")
+c.expect("DEFAULT SWAPPING SPACE? ")
+c.sendline("y")
+c.expect("FRONT END FILE SYSTEM? ")
+c.sendline("y")
+c.expect("BOOTSTRAP AREA? ")
+c.sendline("y")
+c.expect("PROTOTYPE BAT BLOCKS? ")
+c.sendline("y")
+c.expect("DATE AND TIME: ")
+c.sendline("19-MAY-2001 11:13")
+c.expect("(Y,N) ")
+c.sendline("y")
+c.expect("RELOAD? ")
+c.sendline("INSTALLATION")
 
-expect "NO SYSJOB"
-sleep 1
+c.expect("NO SYSJOB")
+time.sleep(1)
 
 # Ctrl-C
-send \003
+c.send("\003")
 
-expect "MX>"
-send "G"
-expect "ET FILE "
-send "MTA0:\r"
+c.expect("MX>")
+c.send("G")
+c.expect("ET FILE ")
+c.sendline("MTA0:")
 
-expect "MX>"
-send "G"
-expect "ET FILE "
-send "MTA0:\r"
+c.expect("MX>")
+send("G")
+c.expect("ET FILE ")
+c.sendline("MTA0:")
 
-expect "MX>"
-send "S"
-expect "TART"
-send "\r"
+c.expect("MX>")
+c.send("S")
+c.expect("TART")
+c.sendline("")
 
-expect "@"
-send "ENABLE (CAPABILITIES)\r"
-expect "$"
-send "RUN (PROGRAM) MTA0:\r"
-expect "DLUSER>"
-send "LOAD (FROM FILE) MTA0:\r"
-expect "DLUSER>"
-send "EXIT\r"
-expect "$"
+c.expect("@")
+c.sendline("ENABLE (CAPABILITIES)")
+c.expect("$")
+c.sendline("RUN (PROGRAM) MTA0:")
+c.expect("DLUSER>")
+c.sendline("LOAD (FROM FILE) MTA0:")
+c.expect("DLUSER>")
+c.sendline("EXIT")
+c.expect("$")
 
-send "RUN (PROGRAM) MTA0:\r"
+c.sendline("RUN (PROGRAM) MTA0:")
 
-expect "DUMPER>"
-send "TAPE (DEVICE) MTA0:\r"
-expect "DUMPER>"
-send "RESTORE (TAPE FILES) PS:<*>*.*.* (TO) PS:<SYSTEM>*.*.*\r"
-expect "DUMPER>"
-send "RESTORE (TAPE FILES) PS:<*>*.*.* (TO) PS:<SUBSYS>*.*.*\r"
-expect "DUMPER>"
-send "RESTORE (TAPE FILES) PS:<*>*.*.* (TO) PS:<UETP.LIB>*.*.*\r"
-expect "DUMPER>"
-send "EXIT\r"
+c.expect("DUMPER>")
+c.sendline("TAPE (DEVICE) MTA0:")
+c.expect("DUMPER>")
+c.sendline("RESTORE (TAPE FILES) PS:<*>*.*.* (TO) PS:<SYSTEM>*.*.*")
+c.expect("DUMPER>")
+c.sendline("RESTORE (TAPE FILES) PS:<*>*.*.* (TO) PS:<SUBSYS>*.*.*")
+c.expect("DUMPER>")
+c.sendline("RESTORE (TAPE FILES) PS:<*>*.*.* (TO) PS:<UETP.LIB>*.*.*")
+c.expect("DUMPER>")
+c.sendline("EXIT")
 
-expect "$"
-send "UNLOAD (DEVICE) MTA0:\r"
-expect "$"
-send "INFORMATION (ABOUT) DISK-USAGE (OF DIRECTORY) PS:<*>\r"
-expect "Pages free on PS:"
-expect "$"
+c.expect("$")
+c.sendline("UNLOAD (DEVICE) MTA0:")
+c.expect("$")
+c.sendline("INFORMATION (ABOUT) DISK-USAGE (OF DIRECTORY) PS:<*>")
+c.expect("Pages free on PS:")
+c.expect("$")
 
-send "CONNECT (TO DIRECTORY) PS:<SYSTEM>\r"
-expect "$"
-send "COPY (FROM) 2020-MONMED.EXE.1 (TO) MONITR.EXE\r"
-expect "$"
+c.sendline("CONNECT (TO DIRECTORY) PS:<SYSTEM>")
+c.expect("$")
+c.sendline("COPY (FROM) 2020-MONMED.EXE.1 (TO) MONITR.EXE")
+c.expect("$")
 
-send "TERMINAL (MODE IS) NO RAISE\r"
-expect "$"
-send "copy (FROM) tty: (TO) monnam.txt\r"
-expect ".1"
-send "Simh TOPS-20 V4.1\r"
+c.sendline("TERMINAL (MODE IS) NO RAISE")
+c.expect("$")
+c.sendline("copy (FROM) tty: (TO) monnam.txt")
+c.expect(".1")
+c.sendline("Simh TOPS-20 V4.1")
 # Ctrl-Z
-send \032
+c.send("\032")
 
-expect "$"
-send "copy (FROM) tty: (TO) TAPNAM.TXT\r"
-expect ".1"
-send "SIMH-V41\r"
-send \032
+c.expect("$")
+c.sendline("copy (FROM) tty: (TO) TAPNAM.TXT")
+c.expect(".1")
+c.sendline("SIMH-V41")
+c.send("\032")
 
-expect "$"
-send "terminal (MODE IS) raise\r"
-expect "$"
-send "CREATE (FILE) 4-1-CONFIG.CMD\r"
-expect "00   "
-send "!TERMINAL SPEEDS\r"
-expect "00   "
-send "!CURRENTLY, DZ11'S ARE NOT IMPLEMENTED\r"
-expect "00   "
-send "TERMINAL 1-40 SPEED 0\r"
-expect "00   "
-send "DEFINE NEW: PS:<NEW>,SYS:\r"
-expect "00   "
-send "DEFINE OLD: PS:<OLD>,SYS:\r"
-expect "00   "
-send "DEFINE HLP: SYS:\r"
-expect "00   "
-send "PRINTER 0 LOWERCASE VFU SYS:NORMAL.VFU\r"
-expect "00   "
-send "PRINTER 0 LOWERCASE RAM SYS:LP96.RAM\r"
-expect "00   "
-send "TIMEZONE 5\r"
-expect "00   "
-send "BIAS 8\r"
-expect "00   "
-send "ENABLE TAPE-DRIVE-ALLOCATION\r"
-expect "01200   "
+c.expect("$")
+c.sendline("terminal (MODE IS) raise")
+c.expect("$")
+c.sendline("CREATE (FILE) 4-1-CONFIG.CMD")
+c.expect("00   ")
+c.sendline("!TERMINAL SPEEDS")
+c.expect("00   ")
+c.sendline("!CURRENTLY, DZ11'S ARE NOT IMPLEMENTED")
+c.expect("00   ")
+c.sendline("TERMINAL 1-40 SPEED 0")
+c.expect("00   ")
+c.sendline("DEFINE NEW: PS:<NEW>,SYS:")
+c.expect("00   ")
+c.sendline("DEFINE OLD: PS:<OLD>,SYS:")
+c.expect("00   ")
+c.sendline("DEFINE HLP: SYS:")
+c.expect("00   ")
+c.sendline("PRINTER 0 LOWERCASE VFU SYS:NORMAL.VFU")
+c.expect("00   ")
+c.sendline("PRINTER 0 LOWERCASE RAM SYS:LP96.RAM")
+c.expect("00   ")
+c.sendline("TIMEZONE 5")
+c.expect("00   ")
+c.sendline("BIAS 8")
+c.expect("00   ")
+c.sendline("ENABLE TAPE-DRIVE-ALLOCATION")
+c.expect("01200   ")
 # Esc
-send \033
-expect "*"
-send "EU\r"
+c.send("\033")
+c.expect("*")
+c.sendline("EU")
 
-expect "$"
+c.expect("$")
 # Ctrl-E
-send \005
-send "CREATE (DIRECTORY NAME) PS:<OPERATOR>\r"
-expect "$$"
-send "PASSWORD DEC-20\r"
-expect "$$"
-send "USER-GROUP (NUMBER) 100\r"
-expect "$$"
-send "IPCF\r"
-expect "$$"
-send "\r"
-expect "$"
+c.send("\005")
+c.sendline("CREATE (DIRECTORY NAME) PS:<OPERATOR>")
+c.expect("$$")
+c.sendline("PASSWORD DEC-20")
+c.expect("$$")
+c.sendline("USER-GROUP (NUMBER) 100")
+c.expect("$$")
+c.sendline("IPCF")
+c.expect("$$")
+c.sendline("")
+c.expect("$")
 
-send \005
-send "CREATE (DIRECTORY NAME) PS:<REMARKS>\r"
-expect "$$"
-send "\r"
+c.send("\005")
+c.sendline("CREATE (DIRECTORY NAME) PS:<REMARKS>")
+c.expect("$$")
+c.sendline("")
 
-expect "$"
-send "CONNECT (TO DIRECTORY) PS:<SUBSYS>\r"
-send "CREATE (FILE) LPFORM.INI\r"
-expect "00100   "
-send "NORMAL/BANNER:1/HEADER:1/TRAILER:1\r"
-expect "00200   "
-send "NARROW/BANNER:1/HEADER:1/TRAILER:1/WIDTH:80\r"
-expect "00300   "
-send \033
-expect "*"
-send "EU\r"
+c.expect("$")
+c.sendline("CONNECT (TO DIRECTORY) PS:<SUBSYS>")
+c.sendline("CREATE (FILE) LPFORM.INI")
+c.expect("00100   ")
+c.sendline("NORMAL/BANNER:1/HEADER:1/TRAILER:1")
+c.expect("00200   ")
+c.sendline("NARROW/BANNER:1/HEADER:1/TRAILER:1/WIDTH:80")
+c.expect("00300   ")
+c.send("\033")
+c.expect("*")
+c.sendline("EU")
 
-expect "$"
-send "CONNECT (TO DIRECTORY) PS:<SYSTEM>\r"
-expect "$"
-send "RUN (PROGRAM) SMFILE\r"
-expect "SMFILE>"
-send "WRITE SETUP PS:<ROOT-DIRECTORY>BOOTSTRAP.BIN\r"
-expect "SMFILE>"
-send "WRITE RESET\r"
-expect "SMFILE>"
-send "READ KS10.ULD\r"
-expect "SMFILE>"
-send "SERIAL 4097\r"
-expect "SMFILE>"
-send "WRITE CRAM\r"
-expect "SMFILE>"
-send "WRITE BOOT SMBOOT.EXE\r"
-expect "SMFILE>"
-send "WRITE DONE\r"
-expect "SMFILE>"
-send "OUTPUT CRAM PS:<SYSTEM>KS10.RAM\r"
-expect "SMFILE>"
-send "OUTPUT MTBOOT SMMTBT.EXE PS:<SYSTEM>MTBOOT.RDI\r"
-expect "SMFILE>"
-send "EXIT\r"
+c.expect("$")
+c.sendline("CONNECT (TO DIRECTORY) PS:<SYSTEM>")
+c.expect("$")
+c.sendline("RUN (PROGRAM) SMFILE")
+c.expect("SMFILE>")
+c.sendline("WRITE SETUP PS:<ROOT-DIRECTORY>BOOTSTRAP.BIN")
+c.expect("SMFILE>")
+c.sendline("WRITE RESET")
+c.expect("SMFILE>")
+c.sendline("READ KS10.ULD")
+c.expect("SMFILE>")
+c.sendline("SERIAL 4097")
+c.expect("SMFILE>")
+c.sendline("WRITE CRAM")
+c.expect("SMFILE>")
+c.sendline("WRITE BOOT SMBOOT.EXE")
+c.expect("SMFILE>")
+c.sendline("WRITE DONE")
+c.expect("SMFILE>")
+c.sendline("OUTPUT CRAM PS:<SYSTEM>KS10.RAM")
+c.expect("SMFILE>")
+c.sendline("OUTPUT MTBOOT SMMTBT.EXE PS:<SYSTEM>MTBOOT.RDI")
+c.expect("SMFILE>")
+c.sendline("EXIT")
 
-expect "$"
+c.expect("$")
 
 # Ctrl-F
 
-send \006
-expect "sim> "
-send "set fe stop\r"
-expect "sim> "
-send "c\r"
-expect "sim> "
-send "exit\r"
+c.send("\006")
+c.expect("sim> ")
+c.sendline("set fe stop")
+c.expect("sim> ")
+c.sendline("c")
+c.expect("sim> ")
+c.sendline("exit")
