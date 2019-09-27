@@ -298,13 +298,86 @@ The [SIMH](http://simh.trailing-edge.com/) emulator is included in
 full.  In fact, many of the other machines listed here are emulated
 using SIMH.  It can emulate dozens of types of old big iron machines.
 
-# Updates (Local Installations)
+# Defining Additional `vint` Subcommands
 
-You can simply `rm -r /opt/vint/systems` and re-run the setup script.
+You can extend the `vint` command on your own, either on a standalone
+system or with a docker image based on this one.  To do so, create a
+directory in `/opt/vint/systems`.  The directory name will be used as
+the command name.  There must be at least one thing in the new
+directory: an executable file named `run`.  This is what `vint` will
+run.  Any other files you put in there are up to you.  See the
+existing installed items for examples.  The name `list` is reserved
+and not available for this purpose.
+
+# Self-Installing OpenVMS on VAX with SIMH
+
+[OpenVMS](https://en.wikipedia.org/wiki/OpenVMS) was a famous
+operating system for DEC's VAX line.  OpenVMS is not included with
+this image.  However, the SIMH simulator installed in it is capable of
+running OpenVMS.
+
+Various information is available online.  For instance:
+
+- [VAX/VMS on Linux using
+  SIMH](https://www.wherry.com/gadgets/retrocomputing/vax-simh.html)
+  is a great overview.  This file is downloaded to
+  `/opt/vint/downloads/vax-simh` for your reference as well.
+- After that, [how to install
+  DECwindows](http://mailman.trailing-edge.com/pipermail/simh/2006-November/000773.html)
+  discusses installing the OpenVMS GUI.
+- [Networking VAX OpenVMS on SIMH & the Raspberry
+  Pi](https://mansfield-devine.com/speculatrix/2016/03/networking-vax-openvms-on-simh-the-raspberry-pi/) -
+  despite its name, isn't specific to the Raspberry Pi
+- [OpenVMS install
+  log](https://raymii.org/s/blog/OpenVMS_7.3_install_log_with_simh_vax_on_Ubuntu_16.04.html)
+- [How to build your own MicroVAX running VMS on
+  SIMH](https://supratim-sanyal.blogspot.com/2016/10/how-to-build-your-own-digital-dec.html)
+- [vaxhaven.com collection](https://vaxhaven.com/VaxHaven)
+- There are also various videos on YouTube.
+
+You will need to obtain a hobbyist OpenVMS license as well as the
+software itself.  Here's how to do that:
+
+- First, join DECUServe.  See the
+  [instructions](https://eisner.decus.org/); as of 2019, you will need
+  to `ssh REGISTRATION@eisner.decuserve.org` and log in with an empty
+  password.  **Make note of your membership number and login details!**
+- You may need to wait a week for the Hobbyist info to reach HPE; see
+  [DECUServe hobbyist info](https://eisner.decus.org/)
+- Get the registration link from DECUServe or [OpenVMS
+  Hobbyist](http://www.openvmshobbyist.com/news.php); as of 2019, it
+  is <https://www.hpe.com/h41268/live/index_e.aspx?qid=24548>.
+- Fill out the registration form.  Your chapter is DECUServe, license
+  type is VAX/Alpha, AllianceOne partner is No, emulator is SIMH.
+- The form is processed by a human.  You'll get a reply with a license
+  pak and download instructions - it seems to take about a business
+  day, but may take longer.
+- Now, you need media.  As of 2019, the email you'll get from HPE
+  includes a sentence about replying back to ask for media downloads.
+  Do that, specifying the VAX platform.  The will, after (it seems) a
+  somewhat longer delay, reply back with time-limited credentials for
+  obtaining the downloads.
+
+# Updates (Raspberry Pi / Local Installations)
+
+Note this will blow away any images you have, savegames, etc.
+
+```
+cd vintage-computing/setup
+git pull
+rm -r /opt/vint/systems
+sudo ./setup.sh
+sudo chown -R "`id -u`:`id -g`" /opt/vint
+```
 
 # Removal (Local Installations)
 
-`rm -r /opt/vint /usr/local/bin/vint`
+Be careful to type this in correctly!
+
+```
+rm -r /opt/vint
+rm /usr/local/bin/vint
+```
 
 # Source
 

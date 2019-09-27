@@ -9,7 +9,7 @@ fi
 
 BASEDIR="/opt/vint"
 
-if [ -z "$1" ]; then
+if [ -z "$1" -o "$1" = "list" ]; then
     echo "Usage: $0 program [...]"
     echo ""
     echo "Valid programs are:"

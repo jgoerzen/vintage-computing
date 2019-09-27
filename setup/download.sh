@@ -42,6 +42,9 @@ dl http://simh.trailing-edge.com/kits/iu7swre.zip
 dl http://pdp-10.trailing-edge.com/tapes/bb-d867e-bm_tops20_v41_2020_instl.tap.bz2
 dl http://panda.trailing-edge.com/panda-dist.tar.gz
 dl https://www.filfre.net/misc/TOPS-10.zip
+dl https://www.wherry.com/gadgets/retrocomputing/vax-simh.html
+dl http://mailman.trailing-edge.com/pipermail/simh/2006-November/000773.html
+dl http://www.itec.suny.edu/scsys/vms/OVMSDOC073/V73/6526/6526pro_035.html
 
 cd ..
 find . -name .git -prune -o \( -type f -print0 \) | sort -z | xargs -0 sha256sum | grep -v newsums > newsums
