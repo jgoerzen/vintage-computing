@@ -238,8 +238,8 @@ making it boot.
 The [Interdata
 32b](https://en.wikipedia.org/wiki/Interdata_7/32_and_8/32) running
 the first non-DEC port of Unix.  This one is [Version 7
-Unix](https://en.wikipedia.org/wiki/Version_7_Unix) from 1975.  `vint
-interdata-unixv67 will fire it up for you and display instructions for
+Unix](https://en.wikipedia.org/wiki/Version_7_Unix) from 1979.  `vint
+interdata-unixv7` will fire it up for you and display instructions for
 making it boot.
 
 ## PDP-10 with TOPS-20
