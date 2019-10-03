@@ -109,6 +109,17 @@ mkdir -p files
 cd files
 tar -xvf "${BASEDIR}/downloads/rdosswre.tar.Z"
 
+### 8086tiny / DOS
+
+cd "${BASEDIR}/systems"
+mkdir -p dos-8086tiny
+cd dos-8086tiny
+mkdir -p files
+cd files
+cp -r ../../downloads/8086-tiny .
+cd 8086-tiny
+make no_graphics
+
 ### pdp10-tops10
 cd "${BASEDIR}/systems"
 mkdir -p pdp10-tops10/files
@@ -132,3 +143,7 @@ mkdir -p pdp10-tops20/files
 cd pdp10-tops20/files
 bzcat "${BASEDIR}/downloads/bb-d867e-bm_tops20_v41_2020_instl.tap.bz2" > i.tap
 ./bootstrap.expect | tee bootstrap.log
+
+echo " ************************"
+echo " Setup process successful"
+echo " ************************"

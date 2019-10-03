@@ -6,6 +6,6 @@ apt-get update
 apt-get -y -u install git gcc make wget libncurses-dev sharutils zip unzip telnet bc bison flex libssl-dev sudo python3-pexpect \
         simh \
         colossal-cave-adventure open-adventure bsdgames \
-        fortunes fortune-mod fortunes-bofh-excuses figlet sysvbanner bsdmainutils \
+        fortunes fortune-mod fortunes-bofh-excuses figlet sysvbanner bsdmainutils gopher \
         cowsay moon-buggy asciijump pacman4console sl petris \
         jzip frotz fizmo-console

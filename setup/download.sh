@@ -32,6 +32,16 @@ if [ ! -d wconrad.github.io ]; then
     git checkout 92d7797323b7347b073e9b6917f46458373a44b5
     cd ..
 fi
+
+# 8086 / DOS
+
+if [ ! -d 8086tiny ]; then
+    git clone -n https://github.com/adriancable/8086tiny.git
+    cd 8086tiny
+    git checkout c79ca2a34d96931d55ef724c815b289d0767ae3a
+    cd ..
+fi
+
 dl http://simh.trailing-edge.com/kits/rdosswre.tar.Z
 dl http://simh.trailing-edge.com/kits/os8swre.tar.Z
 dl http://simh.trailing-edge.com/kits/uv5swre.zip

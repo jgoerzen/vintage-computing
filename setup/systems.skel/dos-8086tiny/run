@@ -1,0 +1,15 @@
+#!/bin/bash
+
+cat <<EOF
+About to start the DOS emulator.  Type QUITEMU to exit
+
+Press Return to continue
+
+EOF
+
+read
+
+SCRIPTFULL="$(readlink -f "$0")"
+SCRIPTDIR="$(dirname "${SCRIPTFULL}")"
+cd "${SCRIPTDIR}/files/8086tiny"
+exec ./runme

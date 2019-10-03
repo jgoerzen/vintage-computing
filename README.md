@@ -189,6 +189,17 @@ them, there are several interpreters available:
  - jzip is also available.  Use `vint usrgames jzip gamename`
  - fizmo is also available. Use `vint usrgames fizmo-console gamename`
 
+# Included Tools
+
+## Gopher
+
+After FTP, but before there was the web, there was gopher - the
+hypertext system from the University of Minnesota.  The UMN gopher
+client is included, which can be used to browse some of the
+still-existing gopher servers.
+
+Use `vint gopher`
+
 # Included Emulators
 
 ## PDP-11 with 2BSD 2.11
@@ -298,6 +309,16 @@ The [SIMH](http://simh.trailing-edge.com/) emulator is included in
 full.  In fact, many of the other machines listed here are emulated
 using SIMH.  It can emulate dozens of types of old big iron machines.
 
+## 8086 with DOS
+
+The operating system that took over the world (for a time): DOS on the
+IBM PC.  This is the 8086tiny emulator running FreeDOS.  Check out its
+documentation, because it can run everything from FreeDOS to even
+Windows.  This version is compiled without graphics support, but it
+can do graphics also.
+
+`vint dos-8086tiny` to start.
+
 # Defining Additional `vint` Subcommands
 
 You can extend the `vint` command on your own, either on a standalone
@@ -365,7 +386,7 @@ Note this will blow away any images you have, savegames, etc.
 ```
 cd vintage-computing/setup
 git pull
-rm -r /opt/vint/systems
+sudo rm -r /opt/vint/systems
 sudo ./setup.sh
 sudo chown -R "`id -u`:`id -g`" /opt/vint
 ```
