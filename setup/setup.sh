@@ -115,9 +115,8 @@ cd "${BASEDIR}/systems"
 mkdir -p dos-8086tiny
 cd dos-8086tiny
 mkdir -p files
-cd files
-cp -r ../../downloads/8086-tiny .
-cd 8086-tiny
+cp -r "${BASEDIR}/downloads/8086tiny" files/
+cd files/8086tiny
 make no_graphics
 
 ### pdp10-tops10

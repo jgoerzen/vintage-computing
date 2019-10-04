@@ -315,9 +315,12 @@ The operating system that took over the world (for a time): DOS on the
 IBM PC.  This is the 8086tiny emulator running FreeDOS.  Check out its
 documentation, because it can run everything from FreeDOS to even
 Windows.  This version is compiled without graphics support, but it
-can do graphics also.
+can do graphics also if you compile it with SDL.
 
 `vint dos-8086tiny` to start.
+
+The system is fairly bare; much software can be downloaded and added
+to this.
 
 # Defining Additional `vint` Subcommands
 
@@ -386,7 +389,7 @@ Note this will blow away any images you have, savegames, etc.
 ```
 cd vintage-computing/setup
 git pull
-sudo rm -r /opt/vint/systems
+sudo mv /opt/vint/systems /opt/vin/systems.old
 sudo ./setup.sh
 sudo chown -R "`id -u`:`id -g`" /opt/vint
 ```
