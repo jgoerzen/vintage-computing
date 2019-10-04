@@ -200,6 +200,31 @@ still-existing gopher servers.
 
 Use `vint gopher`
 
+## Pine (Alpine)
+
+For a whole cohort of Internet users, the text-based program Pine was
+their first exposure to Internet email.  Pine, from the University of
+Washington, has gone through many evolutions over the years, but at
+this moment lives on in the now open source program Alphine.
+
+Alpine supports secured IMAP and SMTP, and thus should still be usable
+with modern email providers!
+
+Use `vint pine`
+
+## FTP and Telnet
+
+Before there was SSH or Bittorrent, remote access to machines was
+typically accomplished via FTP and telnet.  These protocols are
+considered insecure these days, but FTP sites in particular still
+exist, and some legacy systems may be unable to support ssh.  Some
+surviving BBSs, in particular, support telnet but not ssh.
+
+More advanced ftp clients are available (for instance, lftp), but this
+one, with the old FTP command-line look and feel, is included.
+
+Use `vint ftp` and `vint telnet`
+
 # Included Emulators
 
 ## PDP-11 with 2BSD 2.11
@@ -389,7 +414,7 @@ Note this will blow away any images you have, savegames, etc.
 ```
 cd vintage-computing/setup
 git pull
-sudo mv /opt/vint/systems /opt/vin/systems.old
+sudo mv /opt/vint/systems /opt/vint/systems.old
 sudo ./setup.sh
 sudo chown -R "`id -u`:`id -g`" /opt/vint
 ```
