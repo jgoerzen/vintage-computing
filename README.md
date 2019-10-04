@@ -1,4 +1,4 @@
-# Vintage Computing for Docker, Raspberry Pi, and Debign
+# Vintage Computing for Docker, Raspberry Pi, and Debian
 
 This repository provides vintage emulators and games for Docker,
 Raspberry Pi, and Debian systems in general.  Included are such things
