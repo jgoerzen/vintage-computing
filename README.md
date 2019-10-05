@@ -79,6 +79,8 @@ code and steps taken to install it all.
 
 ## Colossal Cave Adventure
 
+![](pics/adventure.jpg)
+
 This is the text adventure that started it all: [Colossal Cave
 Adventure](https://en.wikipedia.org/wiki/Colossal_Cave_Adventure) by
 Crowther & Woods, also known as adventure and advent.
@@ -193,6 +195,8 @@ them, there are several interpreters available:
 
 ## Gopher
 
+![](pics/gopher-amber.jpg)
+
 After FTP, but before there was the web, there was gopher - the
 hypertext system from the University of Minnesota.  The UMN gopher
 client is included, which can be used to browse some of the
@@ -228,6 +232,8 @@ Use `vint ftp` and `vint telnet`
 # Included Emulators
 
 ## PDP-11 with 2BSD 2.11
+
+![](pics/2bsd-zork.jpg)
 
 The machine that started it all... or at least, uh, lots.  `vint
 pdp11-2bsd` will fire up the SIMH emulator of a PDP-11 running 2BSD
@@ -359,6 +365,8 @@ existing installed items for examples.  The name `list` is reserved
 and not available for this purpose.
 
 # Self-Installing OpenVMS on VAX with SIMH
+
+![](pics/vax-boot.jpg)
 
 [OpenVMS](https://en.wikipedia.org/wiki/OpenVMS) was a famous
 operating system for DEC's VAX line.  OpenVMS is not included with
