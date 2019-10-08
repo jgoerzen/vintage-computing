@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -e
+
+cat <<EOF
+Starting PCBASIC
+
+Type "system" to exit.
+
+Press Return to continue.
+EOF
+
+read
+exec /usr/local/bin/pcbasic "$@"

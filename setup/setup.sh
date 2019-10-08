@@ -22,6 +22,9 @@ sha256sum -c < "${SETUPDIR}/sums"
 cd "${BASEDIR}"
 cp -r "${SETUPDIR}/systems.skel" systems
 
+cd /tmp
+pip3 install --system pcbasic
+
 #### zork-glk
 
 cd "${BASEDIR}/systems"
@@ -48,7 +51,7 @@ make
 cd "${BASEDIR}/systems"
 mkdir -p zork-old
 cd zork-old
-cp -r "${BASEDIR}/downloads/devshane-zork" files
+cp -rs "${BASEDIR}/downloads/devshane-zork" files
 cd files
 sed -i "s,^DATADIR.*,DATADIR=`pwd`," Makefile
 make
@@ -114,10 +117,21 @@ tar -xvf "${BASEDIR}/downloads/rdosswre.tar.Z"
 cd "${BASEDIR}/systems"
 mkdir -p dos-8086tiny
 cd dos-8086tiny
-mkdir -p files
-cp -r "${BASEDIR}/downloads/8086tiny" files/
-cd files/8086tiny
+cp -rs "${BASEDIR}/downloads/8086tiny" files
+cd files
 make no_graphics
+
+### pdp10-its
+
+cd "${BASEDIR}/systems"
+mkdir -p pdp10-its
+cd pdp10-its
+cp -r "${BASEDIR}/downloads/its-built" files
+cd files/out/simh
+gunzip *.gz
+cd ../..
+# Build all the stuff that doesn't need an image
+make EMULATOR=simh EXPECT=true
 
 ### pdp10-tops10
 cd "${BASEDIR}/systems"
@@ -142,6 +156,14 @@ mkdir -p pdp10-tops20/files
 cd pdp10-tops20/files
 bzcat "${BASEDIR}/downloads/bb-d867e-bm_tops20_v41_2020_instl.tap.bz2" > i.tap
 ./bootstrap.expect | tee bootstrap.log
+
+cd "${BASEDIR}"
+find . -type d -name .git -exec rm -r {} +
+
+# Make sure we still have the right sums
+cd "${BASEDIR}/downloads"
+sha256sum -c < "${SETUPDIR}/sums"
+
 
 echo " ************************"
 echo " Setup process successful"

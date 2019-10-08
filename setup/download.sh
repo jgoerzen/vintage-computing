@@ -18,29 +18,43 @@ dl https://eblong.com/zarf/glk/glkterm-104.tar.gz
 
 if [ ! -d devshane-zork ]; then
     git clone -n https://github.com/devshane/zork.git devshane-zork
-    cd devshane-zork
-    git checkout 95b1fd1feead1d52ce079678070f37daaf66766d
-    cd ..
 fi
+cd devshane-zork
+git fetch
+git checkout 95b1fd1feead1d52ce079678070f37daaf66766d
+cd ..
 
 # Data General
 
 dl http://bitsavers.trailing-edge.com/pdf/dg/software/rdos/093-000109-01_RDOS_Command_Line_Interpreter.pdf
 if [ ! -d wconrad.github.io ]; then
     git clone -n https://github.com/wconrad/wconrad.github.io.git
-    cd wconrad.github.io
-    git checkout 92d7797323b7347b073e9b6917f46458373a44b5
-    cd ..
 fi
+cd wconrad.github.io
+git fetch
+git checkout 92d7797323b7347b073e9b6917f46458373a44b5
+cd ..
 
 # 8086 / DOS
 
 if [ ! -d 8086tiny ]; then
     git clone -n https://github.com/adriancable/8086tiny.git
-    cd 8086tiny
-    git checkout c79ca2a34d96931d55ef724c815b289d0767ae3a
-    cd ..
 fi
+cd 8086tiny
+git fetch
+git checkout c79ca2a34d96931d55ef724c815b289d0767ae3a
+cd ..
+
+# It takes a LONG time to build this stuff.  I've made a pre-built cache.
+if [ ! -d its-built ]; then
+    git clone --recurse-submodules -n https://github.com/jgoerzen/its-built.git
+fi
+cd its-built
+git fetch
+git checkout eec7197dc83bf56678b6c565e092225d103e3271
+make submodules
+cd ..
+
 
 dl http://simh.trailing-edge.com/kits/rdosswre.tar.Z
 dl http://simh.trailing-edge.com/kits/os8swre.tar.Z
@@ -56,5 +70,4 @@ dl https://www.wherry.com/gadgets/retrocomputing/vax-simh.html
 dl http://mailman.trailing-edge.com/pipermail/simh/2006-November/000773.html
 dl http://www.itec.suny.edu/scsys/vms/OVMSDOC073/V73/6526/6526pro_035.html
 
-cd ..
-find . -name .git -prune -o \( -type f -print0 \) | sort -z | xargs -0 sha256sum | grep -v newsums > newsums
+find . -name .git -prune -o \( -type f -print0 \) | sort -z | xargs -0 sha256sum | grep -v newsums > ../newsums

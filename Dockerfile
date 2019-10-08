@@ -3,7 +3,7 @@ MAINTAINER John Goerzen <jgoerzen@complete.org>
 RUN mv /usr/sbin/policy-rc.d.disabled /usr/sbin/policy-rc.d && \
     apt-get update && \
     apt-get -y -u dist-upgrade && \
-    apt-get -y install wget git
+    apt-get -y install wget git make
 
 # pre-seed the cache a bit
 COPY setup/download.sh /tmp/download.sh

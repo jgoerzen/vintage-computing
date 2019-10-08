@@ -284,6 +284,19 @@ Unix](https://en.wikipedia.org/wiki/Version_7_Unix) from 1979.  `vint
 interdata-unixv7` will fire it up for you and display instructions for
 making it boot.
 
+## PDP-10 with ITS
+
+The [Incompatible Timesharing
+System](https://en.wikipedia.org/wiki/Incompatible_Timesharing_System)
+was a research system at MIT.  It is particularly notable as being the
+initial implementation platform for Emacs, as well as several
+Lisp-related languages and the Macsyma symbolic algebra system and the
+JArgon File.
+
+The ITS interface is nonstandard; some helpful information can be
+found at the [ITS repo](https://github.com/PDP-10/its), which is also
+included as part of this system.
+
 ## PDP-10 with TOPS-20
 
 The old TOPS-20 operating system on the PDP-10 - before Unix even!  I
@@ -352,6 +365,13 @@ can do graphics also if you compile it with SDL.
 
 The system is fairly bare; much software can be downloaded and added
 to this.
+
+## PCBASIC
+
+[PC-BASIC](https://robhagemans.github.io/pcbasic/) is designed to be
+compatible with the old DOS-based BASIC.EXE, BASICA.EXE, and
+GWBASIC.EXE interpreters for BASIC.  It should be able to run all or
+almost all of the old DOS BASIC programs you might find.
 
 # Defining Additional `vint` Subcommands
 

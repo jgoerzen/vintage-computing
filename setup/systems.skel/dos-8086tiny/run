@@ -11,5 +11,5 @@ read
 
 SCRIPTFULL="$(readlink -f "$0")"
 SCRIPTDIR="$(dirname "${SCRIPTFULL}")"
-cd "${SCRIPTDIR}/files/8086tiny"
+cd "${SCRIPTDIR}/files"
 exec ./runme

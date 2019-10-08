@@ -1,0 +1,17 @@
+#!/bin/bash
+set -e
+
+cat <<EOF
+Starting ITS on PDP-10
+
+  If you see DSKDMP prompt, type "its", press Enter,
+  then ESC g.  Once you see "SYSTEM JOB USING THIS CONSOLE",
+  you're reading to log in, to type Ctrl-Z.  
+
+  When done, shut down by typing :lock and then 5down
+EOF
+
+SCRIPTFULL="$(readlink -f "$0")"
+SCRIPTDIR="$(dirname "${SCRIPTFULL}")"
+cd "${SCRIPTDIR}/files"
+exec ./start "$@"
