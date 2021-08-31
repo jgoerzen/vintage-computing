@@ -299,7 +299,7 @@ included as part of this system.
 
 ## PDP-10 with TOPS-20
 
-The old TOPS-20 operating system on the PDP-10 - before Unix even!  I
+The old TOPS-20 operating system on the PDP-10 - dating to the early 70s.  I
 know little about this system.  
 
 Two systems are provided: a very basic one at `vint pdp10-tops20`, and
