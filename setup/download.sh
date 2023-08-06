@@ -15,13 +15,15 @@ dl http://mirror.ifarchive.org/if-archive/games/source/dungn27s.zip
 dl http://mirror.ifarchive.org/if-archive/games/source/dungn32b.zip
 dl http://mirror.ifarchive.org/if-archive/games/source/dungeon-gdt-glk.tar.gz
 dl https://eblong.com/zarf/glk/glkterm-104.tar.gz
+wget --no-verbose --no-parent --mirror --recursive https://www.tuhs.org/Archive/Distributions/Research/Keith_Bostic_v7/
+dl https://opensimh.org/research-unix-7-pdp11-45-v2.0.pdf
 
 if [ ! -d devshane-zork ]; then
     git clone -n https://github.com/devshane/zork.git devshane-zork
 fi
 cd devshane-zork
 git fetch
-git checkout 95b1fd1feead1d52ce079678070f37daaf66766d
+git checkout c44f046a1279c2d29ef3e46ec2e35d7aaecb580f
 cd ..
 
 # Data General
