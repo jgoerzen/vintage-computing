@@ -1,4 +1,4 @@
-FROM jgoerzen/debian-base-standard:buster
+FROM jgoerzen/debian-base-standard:bookworm
 MAINTAINER John Goerzen <jgoerzen@complete.org>
 RUN mv /usr/sbin/policy-rc.d.disabled /usr/sbin/policy-rc.d && \
     apt-get update && \
