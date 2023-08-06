@@ -23,7 +23,8 @@ cd "${BASEDIR}"
 cp -r "${SETUPDIR}/systems.skel" systems
 
 cd /tmp
-pip3 install --system pcbasic
+mkdir -p /usr/local/python
+PIPX_BIN_DIR=/usr/local/bin PIPX_HOME=/usr/local/python pipx install --system-site-packages pcbasic
 
 #### zork-glk
 
