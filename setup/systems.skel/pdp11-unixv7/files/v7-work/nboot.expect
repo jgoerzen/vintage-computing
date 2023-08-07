@@ -21,7 +21,7 @@ c.expect_exact("# ")
 
 # 2.2 Log into multi-user
 # Ctrl-D
-c.send("\005")
+c.send("\004")
 c.expect_exact("login: ")
 c.send("root\r")
 c.expect_exact("Password: ")
@@ -33,7 +33,7 @@ c.send("echo 'stty erase \"^h\" kill \"^u\" nl0 cr0'> .profile\r")
 c.expect_exact("# ")
 
 # Ctrl-D
-c.send("\005")
+c.send("\004")
 c.expect_exact("login: ")
 c.send("root\r")
 c.expect_exact("Password: ")
@@ -75,7 +75,7 @@ c.send("stty\r")
 c.expect_exact("$ ")
 
 # Ctrl-D
-c.send("\005")
+c.send("\004")
 
 c.expect_exact("login: ")
 c.send("wsenn\r")

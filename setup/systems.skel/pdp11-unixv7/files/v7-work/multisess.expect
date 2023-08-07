@@ -21,7 +21,7 @@ c.expect_exact("# ")
 
 # 2.2 Log into multi-user
 # Ctrl-D
-c.send("\005")
+c.send("\004")
 c.expect_exact("login: ")
 c.send("root\r")
 c.expect_exact("Password: ")
