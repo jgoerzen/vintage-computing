@@ -1,0 +1,5 @@
+set cpu u18
+set rl0 RL02
+att rl0 unix_v7_rl.dsk
+boot rl0
+

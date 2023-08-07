@@ -107,6 +107,8 @@ cd ..
 tar -cvjf v7-saved-environments/v7-multi-user.tar.bz2 v7-work
 ls -lh v7-saved-environments
 
+cd v7-work
+./multisess.expect
 
 
 
