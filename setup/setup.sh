@@ -95,6 +95,8 @@ zcat ${BASEDIR}/downloads/www.tuhs.org/Archive/Distributions/Research/Keith_Bost
 sha1sum v7.tap | grep e6188335c0c9a3e3fbdc9c29615f940233722432
 #rm f* mktape.pl
 ls -l
+./tapeboot.expect
+./nboot.expect
 
 unzip "${BASEDIR}/downloads/uv7swre.zip"
 

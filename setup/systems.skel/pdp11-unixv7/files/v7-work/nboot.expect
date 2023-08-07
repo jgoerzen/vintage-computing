@@ -1,0 +1,119 @@
+#!/usr/bin/python3
+import pexpect
+import sys
+import time
+import os
+
+c = pexpect.spawn('pdp11 nboot.ini')
+c.logfile = sys.stdout.buffer
+c.delaybeforesend = 0.2
+c.setecho(False)
+os.linesep = "\r"
+
+c.expect("last track")
+c.send("y\r")
+c.expect("last track")
+c.send("y\r")
+
+c.expect_exact("Boot")
+c.expect_exact(": ")
+
+c.send("tm(0,3)\r")
+c.expect_exact("file sys size")
+c.send("5000\r")
+c.expect_exact("file system")
+c.send("hp(0,0)\r")
+
+
+c.expect_exact("Boot")
+c.expect_exact(": ")
+
+c.send("tm(0,4)\r")
+c.expect_exact("Tape")
+c.send("tm(0,5)\r")
+c.expect_exact("Disk")
+c.send("hp(0,0)\r")
+c.expect_exact("scribbling")
+c.send("\r")
+
+c.expect_exact("Boot")
+c.expect_exact(": ")
+
+c.send("hp(0,0)hptmunix\r")
+c.expect_exact("# ")
+
+c.send("stty -lcase nl0 cr0\r")
+c.expect_exact("# ")
+
+c.send("cp hptmunix unix; rm hphtunix rphtunix rptmunix; ls -l *ix\r")
+c.expect_exact("# ")
+
+c.send("cd /dev\r")
+c.expect_exact("# ")
+
+c.send("/etc/mknod rp0 b 6 0\r")
+c.expect_exact("# ")
+
+c.send("/etc/mknod swap b 6 1\r")
+c.expect_exact("# ")
+
+c.send("/etc/mknod rp3 b 6 15\r")
+c.expect_exact("# ")
+
+c.send("/etc/mknod rrp0 c 14 0\r")
+c.expect_exact("# ")
+
+c.send("/etc/mknod rrp3 c 14 15\r")
+c.expect_exact("# ")
+
+c.send("chmod go-w rp0 swap rp3 rrp0 rrp3\r")
+c.expect_exact("# ")
+
+c.send("make tm\r")
+c.expect_exact("# ")
+
+c.send("ls -l\r")
+c.expect_exact("# ")
+
+c.send("cd /\r")
+c.expect_exact("# ")
+
+c.send("etc/mkfs /dev/rp3 322278\r")
+c.expect_exact("# ")
+
+c.send("icheck /dev/rp3\r")
+c.expect_exact("# ")
+
+# 1.10 restore the /usr filesystem
+
+c.send("dd if=/dev/nrmt0 of=/dev/null bs=20b files=6\r")
+c.expect_exact("# ")
+
+c.send("restor rf /dev/rmt0 /dev/rp3\r")
+c.expect_exact("scribbling")
+c.send("\r")
+c.expect_exact("# ")
+
+# 1.11 mount /usr
+
+c.send("/etc/mount /dev/rp3 /usr\r")
+c.expect_exact("# ")
+
+c.send("dd if=/usr/mdec/hpuboot of=/dev/rp0 count=1\r")
+c.expect_exact("# ")
+
+# 1.12 shut down
+
+c.send("sync\r")
+c.expect_exact("# ")
+c.send("sync\r")
+c.expect_exact("# ")
+c.send("sync\r")
+c.expect_exact("# ")
+c.send("sync\r")
+c.expect_exact("# ")
+
+# Ctrl-E
+c.send("\005")
+c.expect_exact("sim> ")
+c.send("q\r")
