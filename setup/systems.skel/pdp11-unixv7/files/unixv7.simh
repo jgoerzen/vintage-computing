@@ -1,5 +1,11 @@
-set cpu u18
-set rl0 RL02
-att rl0 unix_v7_rl.dsk
-boot rl0
-
+set cpu 11/70
+set cpu 2M
+set cpu idle
+set rp0 rp06
+att rp0 v7-work/rp06-0.disk
+set rp1 rp06
+att rp1 v7-work/rp06-1.disk
+set dci en
+set dci lines=4
+att dci 4000
+boot rp0

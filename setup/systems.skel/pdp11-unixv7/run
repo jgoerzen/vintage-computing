@@ -4,9 +4,9 @@ set -e
 cat <<EOF
 Starting UNIX V7 on PDP-11
 
-  Type "boot" at the "@" prompt, then at the ":" prompt, type
-  "rl(0,0)rl2unix".  At the "#" prompt, type Ctrl-D, then login
-  as root, password root.
+  There will be no prompt; just type "boot"  Then at the ":" prompt, type
+  "hp(0,0)munix".  At the "#" prompt, type Ctrl-D, then login
+  as root, password root.  A user login is available as wsenn, password wsenn5.
 
   For additional logins, "telnet localhost 4000".
 

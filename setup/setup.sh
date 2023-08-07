@@ -110,8 +110,11 @@ ls -lh v7-saved-environments
 cd v7-work
 ./multisess.expect
 
+cd ..
+tar -cvjf v7-saved-environments/v7-multi-session.tar.bz2 v7-work
+ls -lh v7-saved-environments
 
-
+# Old method
 unzip "${BASEDIR}/downloads/uv7swre.zip"
 
 ### interdata-unixv6
