@@ -10,9 +10,9 @@ c.delaybeforesend = 0.2
 c.setecho(False)
 os.linesep = "\r"
 
-c.expect("last track")
+c.expect_exact("last track? [N]")
 c.send("y\r")
-c.expect("last track")
+c.expect_exact("last track? [N]")
 c.send("y\r")
 
 c.expect_exact("Boot")

@@ -11,3 +11,7 @@ apt-get  -y -u install git gcc make wget libncurses-dev sharutils zip unzip teln
         cowsay moon-buggy asciijump pacman4console sl petris \
         jzip frotz fizmo-console
 apt-get -y -u --no-install-recommends install pipx
+
+cd /tmp
+mkdir -p /usr/local/python
+PIPX_BIN_DIR=/usr/local/bin PIPX_HOME=/usr/local/python pipx install --system-site-packages pcbasic

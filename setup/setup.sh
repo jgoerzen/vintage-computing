@@ -15,16 +15,48 @@ cd "${BASEDIR}"
 mkdir -p downloads
 cd downloads
 
-"${SETUPDIR}/instpkgs.sh"
-"${SETUPDIR}/download.sh"
+#"${SETUPDIR}/instpkgs.sh"
+#"${SETUPDIR}/download.sh"
 sha256sum -c < "${SETUPDIR}/sums"
 
 cd "${BASEDIR}"
 cp -r "${SETUPDIR}/systems.skel" systems
 
-cd /tmp
-mkdir -p /usr/local/python
-PIPX_BIN_DIR=/usr/local/bin PIPX_HOME=/usr/local/python pipx install --system-site-packages pcbasic
+### pdp11-unixv7
+
+cd "${BASEDIR}/systems"
+mkdir -p pdp11-unixv7
+cd pdp11-unixv7/files
+#cp ${BASEDIR}/downloads/www.tuhs.org/Archive/Distributions/Research/Keith_Bostic_v7/*.{pl,gz} .
+#chmod u+x mktape.pl
+#gunzip f?.gz
+#./mktape.pl
+zcat ${BASEDIR}/downloads/www.tuhs.org/Archive/Distributions/Research/Keith_Bostic_v7/v7.tap.gz > v7-work/v7.tap
+sha1sum v7-work/v7.tap | grep e6188335c0c9a3e3fbdc9c29615f940233722432
+#rm f* mktape.pl
+ls -l
+cd v7-work
+./tapeboot.expect
+
+cd ..
+mkdir v7-saved-environments
+tar -cvjf v7-saved-environments/v7-pristine.tar.bz2 v7-work
+ls -lh v7-saved-environments
+cd v7-work
+./nboot-expect
+cd ..
+tar -cvjf v7-saved-environments/v7-multi-user.tar.bz2 v7-work
+ls -lh v7-saved-environments
+
+cd v7-work
+./multisess.expect
+
+cd ..
+tar -cvjf v7-saved-environments/v7-multi-session.tar.bz2 v7-work
+ls -lh v7-saved-environments
+
+# Old method
+unzip "${BASEDIR}/downloads/uv7swre.zip"
 
 #### zork-glk
 
@@ -80,42 +112,6 @@ cd "${BASEDIR}/systems"
 mkdir -p pdp11-unixv6
 cd pdp11-unixv6/files
 unzip "${BASEDIR}/downloads/uv6swre.zip"
-
-### pdp11-unixv5
-
-cd "${BASEDIR}/systems"
-mkdir -p pdp11-unixv7
-cd pdp11-unixv7/files
-mkdir v7-work
-#cp ${BASEDIR}/downloads/www.tuhs.org/Archive/Distributions/Research/Keith_Bostic_v7/*.{pl,gz} .
-#chmod u+x mktape.pl
-#gunzip f?.gz
-#./mktape.pl
-zcat ${BASEDIR}/downloads/www.tuhs.org/Archive/Distributions/Research/Keith_Bostic_v7/v7.tap.gz > v7.tap
-sha1sum v7.tap | grep e6188335c0c9a3e3fbdc9c29615f940233722432
-#rm f* mktape.pl
-ls -l
-./tapeboot.expect
-
-cd ..
-mkdir v7-saved-environments
-tar -cvjf v7-saved-environments/v7-pristine.tar.bz2 v7-work
-ls -lh v7-saved-environments
-cd v7-work
-./nboot-expect
-cd ..
-tar -cvjf v7-saved-environments/v7-multi-user.tar.bz2 v7-work
-ls -lh v7-saved-environments
-
-cd v7-work
-./multisess.expect
-
-cd ..
-tar -cvjf v7-saved-environments/v7-multi-session.tar.bz2 v7-work
-ls -lh v7-saved-environments
-
-# Old method
-unzip "${BASEDIR}/downloads/uv7swre.zip"
 
 ### interdata-unixv6
 
