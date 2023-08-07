@@ -96,7 +96,19 @@ sha1sum v7.tap | grep e6188335c0c9a3e3fbdc9c29615f940233722432
 #rm f* mktape.pl
 ls -l
 ./tapeboot.expect
-./nboot.expect
+
+cd ..
+mkdir v7-saved-environments
+tar -cvjf v7-saved-environments/v7-pristine.tar.bz2 v7-work
+ls -lh v7-saved-environments
+cd v7-work
+./nboot-expect
+cd ..
+tar -cvjf v7-saved-environments/v7-multi-user.tar.bz2 v7-work
+ls -lh v7-saved-environments
+
+
+
 
 unzip "${BASEDIR}/downloads/uv7swre.zip"
 
