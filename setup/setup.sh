@@ -87,12 +87,13 @@ cd "${BASEDIR}/systems"
 mkdir -p pdp11-unixv7
 cd pdp11-unixv7/files
 mkdir v7-work
-cp ${BASEDIR}/downloads/www.tuhs.org/Archive/Distributions/Research/Keith_Bostic_v7/*.{pl,gz} .
-chmod u+x mktape.pl
-gunzip f?.gz
-./mktape.pl
-sha1 v7.tap | grep e6188335c0c9a3e3fbdc9c29615f940233722432
-rm f* mktape.pl
+#cp ${BASEDIR}/downloads/www.tuhs.org/Archive/Distributions/Research/Keith_Bostic_v7/*.{pl,gz} .
+#chmod u+x mktape.pl
+#gunzip f?.gz
+#./mktape.pl
+zcat ${BASEDIR}/downloads/www.tuhs.org/Archive/Distributions/Research/Keith_Bostic_v7/v7.tap.gz > v7.tap
+sha1sum v7.tap | grep e6188335c0c9a3e3fbdc9c29615f940233722432
+#rm f* mktape.pl
 ls -l
 
 unzip "${BASEDIR}/downloads/uv7swre.zip"

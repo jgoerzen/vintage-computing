@@ -4,11 +4,79 @@ import sys
 import time
 import os
 
-c = pexpect.spawn('pdp10')
+c = pexpect.spawn('pdp11 tape.ini')
 c.logfile = sys.stdout.buffer
 c.delaybeforesend = 0.2
 c.setecho(False)
 os.linesep = "\r"
+
+c.expect("last track")
+c.send("y\r")
+c.expect("last track")
+c.send("y\r")
+
+c.expect_exact("Boot")
+c.expect_exact(": ")
+
+c.send("tm(0,3)\r")
+c.expect_exact("file sys size")
+c.send("5000\r")
+c.expect_exact("file system")
+c.send("hp(0,0)\r")
+
+
+c.expect_exact("Boot")
+c.expect_exact(": ")
+
+c.send("tm(0,4)\r")
+c.expect_exact("Tape")
+c.send("tm(0,5)\r")
+c.expect_exact("Disk")
+c.send("hp(0,0)\r")
+c.expect_exact("scribbling")
+c.send("\r")
+
+c.expect_exact("Boot")
+c.expect_exact(": ")
+
+c.send("hp(0,0)hptmunix\r")
+c.expect_exact("# ")
+
+c.send("stty -lcase nl0 cr0\r")
+c.expect_exact("# ")
+
+c.send("cp hptmunix unix; rm hphtunix rphtunix rptmunix; ls -l *ix\r")
+c.expect_exact("# ")
+
+c.send("cd /dev\r")
+c.expect_exact("# ")
+
+c.send("/etc/mknod rp0 b 6 0\r")
+c.expect_exact("# ")
+
+c.send("/etc/mknod swap b 6 1\r")
+c.expect_exact("# ")
+
+c.send("/etc/mknod rp3 b 6 15\r")
+c.expect_exact("# ")
+
+c.send("/etc/mknod rrp0 c 14 0\r")
+c.expect_exact("# ")
+
+c.send("/etc/mknod rrp3 c 14 15\r")
+c.expect_exact("# ")
+
+c.send("chmod go-w rp0 swap rp3 rrp0 rrp3\r")
+c.expect_exact("# ")
+
+c.send("make tm\r")
+c.expect_exact("# ")
+
+c.send("ls -l\r")
+c.expect_exact("# ")
+
+
+
 
 
 c.expect_exact("sim> ")
