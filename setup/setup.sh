@@ -43,7 +43,7 @@ mkdir v7-saved-environments
 tar -cvjf v7-saved-environments/v7-pristine.tar.bz2 v7-work
 ls -lh v7-saved-environments
 cd v7-work
-./nboot-expect
+./nboot.expect
 cd ..
 tar -cvjf v7-saved-environments/v7-multi-user.tar.bz2 v7-work
 ls -lh v7-saved-environments
