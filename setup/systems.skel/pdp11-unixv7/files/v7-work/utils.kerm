@@ -1,0 +1,72 @@
+#!/usr/bin/kermit +
+
+set input echo on
+set input timeout quit
+set exit warning off
+
+set host /net:pseudo pdp11 nboot.ini
+if fail exit 1 "Failed to start emulator"
+
+input 5 "Disabling XQ"
+lineout "boot"
+
+input 5 "Boot"
+input 5 ": "
+
+lineout "hp(0,0)unix"
+input 5 "# "
+
+; Ctrl-D
+output \4
+input 5 "login: "
+lineout root
+
+input 5 Password:
+lineout root
+
+input 5 "# "
+lineout "cd /usr/src"
+
+input 5 "# "
+lineout "mkdir uue"
+
+input 5 "# "
+lineout "cd uue"
+
+input 5 "# "
+lineout "cat > uudecode.c"
+transmit /text /opt/vint/downloads/uudecode.c
+; Ctrl-D
+output \4
+
+input 5 "# "
+lineout "cc -O -o uudecode uudecode.c && echo good"
+
+input 10 "good"
+input 5 "# "
+
+lineout "cat > uuencode.c"
+transmit /text /opt/vint/downloads/uuencode.c
+; Ctrl-D
+output \4
+
+input 5 "# "
+lineout "cc -O -o uuencode uuencode.c && echo good"
+
+input 10 "good"
+input 5 "# "
+
+lineout "strip uudecode"
+input 5 "# "
+
+lineout "strip uuencode"
+input 5 "# "
+
+lineout "cp uudecode uuencode /bin"
+input 5 "# "
+
+lineout "cd /usr"
+input 5 "# "
+
+
+exit 0 all done
