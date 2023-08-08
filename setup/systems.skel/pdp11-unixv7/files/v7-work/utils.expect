@@ -1,0 +1,100 @@
+#!/usr/bin/python3
+import pexpect
+import sys
+import time
+import os
+
+c = pexpect.spawn('pdp11 nboot.ini')
+c.logfile = sys.stdout.buffer
+c.delaybeforesend = 0.2
+c.setecho(False)
+os.linesep = "\r"
+
+c.expect("Disabling XQ")
+c.send("boot\r")
+
+c.expect_exact("Boot")
+c.expect_exact(": ")
+
+c.send("hp(0,0)unix\r")
+c.expect_exact("# ")
+
+# 2.2 Log into multi-user
+# Ctrl-D
+c.send("\004")
+c.expect_exact("login: ")
+c.send("root\r")
+c.expect_exact("Password:")
+c.send("root\r")
+c.expect_exact("# ")
+
+# 3.3 reconfigure to support 4 lines
+c.send("cd /usr/sys/conf\r")
+c.expect_exact("# ")
+
+c.send("rm l.o c.o\r")
+c.expect_exact("# ")
+
+c.send("cp hptmconf myconf\r")
+c.expect_exact("# ")
+
+c.send("echo 4dc >> myconf\r")
+c.expect_exact("# ")
+
+c.send("mkconf < myconf\r")
+c.expect_exact("dc at 330")
+c.expect_exact("# ")
+
+c.send("make\r")
+c.expect_exact("# ")
+
+c.send("sum unix\r")
+c.expect_exact("10314")
+c.expect_exact("106")
+c.expect_exact("# ")
+
+c.send("ls -l unix\r")
+c.expect_exact("54122")
+c.expect_exact("# ")
+
+c.send("mv unix /munix\r")
+c.expect_exact("# ")
+
+c.send("ed /etc/ttys\r")
+c.expect_exact("266")
+
+c.send("2,5s/./1/\r")
+c.send("w\r")
+c.expect_exact("266")
+c.send("q\r")
+c.expect_exact("# ")
+
+c.send("sed -n '1,6p' /etc/ttys\r")
+c.expect_exact("00tty04")
+c.expect_exact("# ")
+
+c.send("/etc/mknod /dev/tty00 c 3 0\r")
+c.expect_exact("# ")
+c.send("/etc/mknod /dev/tty01 c 3 1\r")
+c.expect_exact("# ")
+c.send("/etc/mknod /dev/tty02 c 3 2\r")
+c.expect_exact("# ")
+c.send("/etc/mknod /dev/tty03 c 3 3\r")
+c.expect_exact("# ")
+c.send("chmod 640 /dev/tty0?\r")
+c.expect_exact("# ")
+
+# 3.4 shutdown
+
+c.send("sync\r")
+c.expect_exact("# ")
+c.send("sync\r")
+c.expect_exact("# ")
+c.send("sync\r")
+c.expect_exact("# ")
+
+# Ctrl-E
+c.send("\005")
+c.expect_exact("sim> ")
+c.send("q\r")
+

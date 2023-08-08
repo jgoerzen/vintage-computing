@@ -11,6 +11,7 @@ dl () {
 
 dl http://fractal.math.unr.edu/~ejolson/pi/uudecode.c
 dl http://fractal.math.unr.edu/~ejolson/pi/uuencode.c
+dl http://www.columbia.edu/kermit/ftp/archives/ckc072.tar.gz
 dl https://www.tuhs.org/Archive/Caldera-license.pdf
 dl https://www.tuhs.org/Archive/Distributions/Boot_Images/2.11_on_Simh/211bsd.tar.gz
 dl http://mirror.ifarchive.org/if-archive/games/source/dungn27s.zip
@@ -75,3 +76,6 @@ dl http://mailman.trailing-edge.com/pipermail/simh/2006-November/000773.html
 dl 'http://odl.sysworks.biz/disk$axpdocjun032/network/tcpip53/manage/6526pro_035.html'
 
 find . -name .git -prune -o \( -type f -print0 \) | sort -z | xargs -0 sha256sum | grep -v newsums > ../newsums
+echo "START OF NEW SUMS"
+cat newsums
+echo "END OF NEW SUMS"
