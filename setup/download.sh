@@ -9,6 +9,8 @@ dl () {
     fi
 }
 
+dl http://fractal.math.unr.edu/~ejolson/pi/uudecode.c
+dl http://fractal.math.unr.edu/~ejolson/pi/uuencode.c
 dl https://www.tuhs.org/Archive/Caldera-license.pdf
 dl https://www.tuhs.org/Archive/Distributions/Boot_Images/2.11_on_Simh/211bsd.tar.gz
 dl http://mirror.ifarchive.org/if-archive/games/source/dungn27s.zip

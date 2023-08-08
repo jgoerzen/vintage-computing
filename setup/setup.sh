@@ -15,8 +15,8 @@ cd "${BASEDIR}"
 mkdir -p downloads
 cd downloads
 
-#"${SETUPDIR}/instpkgs.sh"
-#"${SETUPDIR}/download.sh"
+"${SETUPDIR}/instpkgs.sh"
+"${SETUPDIR}/download.sh"
 sha256sum -c < "${SETUPDIR}/sums"
 
 cd "${BASEDIR}"

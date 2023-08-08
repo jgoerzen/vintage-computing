@@ -18,7 +18,7 @@ own.)
 You can run `docker run -ti jgoerzen/vintage-computing vint` (with
 whatever parameters you need) to just fire up something in your
 terminal.  The image is also based on my [Debian base
-images](https://github.com/jgoerzen/docker-debian-base), so you could
+images](https://salsa.debian.org/jgoerzen/docker-debian-base), so you could
 also configure SSH or other access to the system if you so desire.
 
 Within the Docker image, at any shell prompt, just run `vint` as in
@@ -265,6 +265,18 @@ Unix](https://en.wikipedia.org/wiki/Version_6_Unix) from 1979.  `vint
 pdp11-unixv7` will fire it up for you and display instructions for
 making it boot.  This version was the ancestor for many other Unixes
 that have come since.
+
+I have built it based on the
+[instructions](https://opensimh.org/research-unix-7-pdp11-45-v2.0.pdf) for
+bootstrapping it using the [Keith Bostic
+v7](https://www.tuhs.org/Archive/Distributions/Research/Keith_Bostic_v7/)
+software.
+
+/opt/vint/systems/pdp11-unixv7/run.old is also available, which references
+an image from Caldera.  It has a tiny disk which can pose a problem.  That
+image contained compress/uncompress, which I copied into the image I provide you.
+
+I have also added uudecode and uuencode to the image I provide you.
 
 ## Interdata 32b with V6 Unix
 
