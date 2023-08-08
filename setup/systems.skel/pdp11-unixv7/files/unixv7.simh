@@ -1,6 +1,5 @@
 set cpu 11/70
 set cpu 2M
-set cpu idle
 set rp0 rp06
 att rp0 v7-work/rp06-0.disk
 set rp1 rp06
