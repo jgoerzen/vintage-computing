@@ -77,5 +77,5 @@ dl 'http://odl.sysworks.biz/disk$axpdocjun032/network/tcpip53/manage/6526pro_035
 
 find . -name .git -prune -o \( -type f -print0 \) | sort -z | xargs -0 sha256sum | grep -v newsums > ../newsums
 echo "START OF NEW SUMS"
-cat newsums
+cat ../newsums
 echo "END OF NEW SUMS"

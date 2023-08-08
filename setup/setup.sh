@@ -53,7 +53,10 @@ cd ..
 tar -cvjf v7-saved-environments/v7-multi-session.tar.bz2 v7-work
 
 cd v7-work
+./utils.kerm
 
+cd ..
+tar -cvjf v7-saved-environments/v7-utils.tar.bz2 v7-work
 
 ls -lh v7-saved-environments
 

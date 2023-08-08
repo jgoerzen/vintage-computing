@@ -39,7 +39,7 @@ transmit /text /opt/vint/downloads/uudecode.c
 ; Ctrl-D
 output \4
 
-input 5 "# "
+input 35 "# "
 lineout "cc -O -o uudecode uudecode.c && echo good"
 
 input 10 "good"
@@ -68,5 +68,47 @@ input 5 "# "
 lineout "cd /usr"
 input 5 "# "
 
+lineout "uudecode"
+transmit /text ../../usr-src-ucb.tar.uue
+
+; Ctrl-D
+output \4
+
+input 120 "# "
+lineout "cd /"
+input 5 "# "
+lineout "tar -xvf /usr/usr-src-ucb.tar"
+input 20 "# "
+lineout "rm /usr/usr-src-ucb.tar"
+
+input 5 "# "
+lineout "cd /usr/src/ucb/compress"
+
+input 5 "# "
+lineout "cp compress /bin"
+
+input 5 "# "
+lineout "cd /bin"
+
+input 5 "# "
+lineout "ln compress uncompress"
+
+input 5 "# "
+lineout "ln compress zcat"
+
+input 5 "# "
+
+lineout "sync"
+input 5 "# "
+
+lineout "sync"
+input 5 "# "
+
+lineout "sync"
+input 5 "# "
+
+output \5
+input 5 "sim> "
+lineout "q"
 
 exit 0 all done
