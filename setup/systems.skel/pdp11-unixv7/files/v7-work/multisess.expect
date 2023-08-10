@@ -16,7 +16,7 @@ c.send("boot\r")
 c.expect_exact("Boot")
 c.expect_exact(": ")
 
-c.send("hp(0,0)munix\r")
+c.send("hp(0,0)unix\r")
 c.expect_exact("# ")
 
 # 2.2 Log into multi-user
