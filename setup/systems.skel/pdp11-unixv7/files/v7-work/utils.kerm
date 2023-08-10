@@ -113,9 +113,6 @@ woutline "uudecode"
 mpause 200
 wtrans ../usr-src-ucb.tar.uue
 
-; Ctrl-D
-wout \4
-
 win 120 "# "
 woutline "cd /"
 wprompt
