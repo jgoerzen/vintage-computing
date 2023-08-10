@@ -1,114 +1,156 @@
 #!/usr/bin/kermit +
 
-set input echo on
+; Copyright 2023 John Goerzen
+
 set input timeout quit
 set exit warning off
+set input echo on
 
-set host /net:pseudo pdp11 nboot.ini
+; Write out, after a delay that is absolutely necessary for the emulator
+define WOUTLINE {
+   mpause 200
+   lineout \%1
+}
+
+; Write out, after a delay that is absolutely necessary.
+define WOUT {
+   mpause 200
+   output \%1
+}
+
+; Wait for an input
+define WIN5 {
+   input 5 \%1
+   if fail exit 1 "Failed waiting for \%1"
+} 
+
+; Wait for an input
+define WIN {
+   input \%1 \%2
+   if fail exit 1 "Failed waiting for \%1"
+} 
+
+define WPROMPT {
+   WIN5 "# "
+}
+
+define WTRANS {
+   set input echo off
+   echo "Transmitting \%1..."
+   transmit /noecho /text \%1
+   echo "Transmission complete."
+   set input echo on
+} 
+
+cd ..
+set host /net:pseudo pdp11 unixv7.simh
 if fail exit 1 "Failed to start emulator"
 
-input 5 "Disabling XQ"
-lineout "boot"
+win5 "Disabling XQ"
+woutline "boot"
 
-input 5 "Boot"
-input 5 ": "
+win5 "Boot"
+win5 ": "
 
-lineout "hp(0,0)unix"
-input 5 "# "
-
-; Ctrl-D
-output \4
-input 5 "login: "
-lineout root
-
-input 5 Password:
-lineout root
-
-input 5 "# "
-lineout "cd /usr/src"
-
-input 5 "# "
-lineout "mkdir uue"
-
-input 5 "# "
-lineout "cd uue"
-
-input 5 "# "
-lineout "cat > uudecode.c"
-transmit /text /opt/vint/downloads/uudecode.c
-; Ctrl-D
-output \4
-
-input 35 "# "
-lineout "cc -O -o uudecode uudecode.c && echo good"
-
-input 10 "good"
-input 5 "# "
-
-lineout "cat > uuencode.c"
-transmit /text /opt/vint/downloads/uuencode.c
-; Ctrl-D
-output \4
-
-input 5 "# "
-lineout "cc -O -o uuencode uuencode.c && echo good"
-
-input 10 "good"
-input 5 "# "
-
-lineout "strip uudecode"
-input 5 "# "
-
-lineout "strip uuencode"
-input 5 "# "
-
-lineout "cp uudecode uuencode /bin"
-input 5 "# "
-
-lineout "cd /usr"
-input 5 "# "
-
-lineout "uudecode"
-transmit /text ../../usr-src-ucb.tar.uue
+woutline "hp(0,0)munix"
+win 20 "# "
 
 ; Ctrl-D
-output \4
+wout \4
+win5 "login: "
+woutline root
 
-input 120 "# "
-lineout "cd /"
-input 5 "# "
-lineout "tar -xvf /usr/usr-src-ucb.tar"
-input 20 "# "
-lineout "rm /usr/usr-src-ucb.tar"
+win5 Password:
+woutline root
 
-input 5 "# "
-lineout "cd /usr/src/ucb/compress"
+wprompt
+woutline "cd /usr/src"
 
-input 5 "# "
-lineout "cp compress /bin"
+wprompt
+woutline "mkdir uue"
 
-input 5 "# "
-lineout "cd /bin"
+wprompt
+woutline "cd uue"
 
-input 5 "# "
-lineout "ln compress uncompress"
+wprompt
+woutline "cat > uudecode.c"
+mpause 200
+wtrans /opt/vint/downloads/uudecode.c
+; Ctrl-D
+wout \4
 
-input 5 "# "
-lineout "ln compress zcat"
+win 35 "# "
+woutline "cc -O -o uudecode uudecode.c && echo good"
 
-input 5 "# "
+win 10 "good"
+wprompt
 
-lineout "sync"
-input 5 "# "
+woutline "cat > uuencode.c"
+mpause 200
+wtrans /opt/vint/downloads/uuencode.c
+; Ctrl-D
+wout \4
 
-lineout "sync"
-input 5 "# "
+wprompt
+woutline "cc -O -o uuencode uuencode.c && echo good"
 
-lineout "sync"
-input 5 "# "
+win 10 "good"
+wprompt
 
-output \5
-input 5 "sim> "
-lineout "q"
+woutline "strip uudecode"
+wprompt
+
+woutline "strip uuencode"
+wprompt
+
+woutline "cp uudecode uuencode /bin"
+wprompt
+
+woutline "cd /usr"
+wprompt
+
+woutline "uudecode"
+mpause 200
+wtrans ../usr-src-ucb.tar.uue
+
+; Ctrl-D
+wout \4
+
+win 120 "# "
+woutline "cd /"
+wprompt
+woutline "tar -xvf /usr/usr-src-ucb.tar"
+win 20 "# "
+woutline "rm /usr/usr-src-ucb.tar"
+
+wprompt
+woutline "cd /usr/src/ucb/compress"
+
+wprompt
+woutline "cp compress /bin"
+
+wprompt
+woutline "cd /bin"
+
+wprompt
+woutline "ln compress uncompress"
+
+wprompt
+woutline "ln compress zcat"
+
+wprompt
+
+woutline "sync"
+wprompt
+
+woutline "sync"
+wprompt
+
+woutline "sync"
+wprompt
+
+wout \5
+win5 "sim> "
+woutline "q"
 
 exit 0 all done
