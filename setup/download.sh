@@ -11,7 +11,7 @@ dl () {
 
 dl http://fractal.math.unr.edu/~ejolson/pi/uudecode.c
 dl http://fractal.math.unr.edu/~ejolson/pi/uuencode.c
-dl http://www.columbia.edu/kermit/ftp/archives/ckc072.tar.gz
+dl https://kermit.mirrors.quux.org/kermit-websites-mirror/ftp.columbia.edu/kermit/archives/ckc072.tar.gz
 dl https://www.tuhs.org/Archive/Caldera-license.pdf
 dl https://www.tuhs.org/Archive/Distributions/Boot_Images/2.11_on_Simh/211bsd.tar.gz
 dl http://mirror.ifarchive.org/if-archive/games/source/dungn27s.zip
